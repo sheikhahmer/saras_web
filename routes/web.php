@@ -1,10 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\CategoryController;
 
-Route::get('/', function () {
-    return view('welcome');
-});
-Route::get('/category', function () {
-    return view('category');
-});
+Route::get('/', [HomeController::class, 'index'])->name('home');
+
+Route::get('/category', [CategoryController::class, 'index'])->name('category');
