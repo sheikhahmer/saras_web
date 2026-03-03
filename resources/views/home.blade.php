@@ -285,7 +285,7 @@
 
 <section class="bg-[#111110] py-6 min-h-[150px] text-center flex flex-col justify-center rounded-sm">
     <div class="text-white/50 uppercase tracking-[10%] md:tracking-[25%] text-lg font-semibold mb-2">FOLLOW US ON INSTAGRAM</div>
-    <div><a href="#" class="text-white text-lg font-semibold tracking-[20%] hover:text-rouge transition-colors duration-300">@saras_creations</a></div>
+    <div><a href="#" class="text-white text-lg font-semibold tracking-[20%] hover:text-rouge transition-colors duration-300">@saras_creation8</a></div>
 </section>
 
 @endsection
