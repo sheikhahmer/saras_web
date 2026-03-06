@@ -2,12 +2,39 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Banner;
+use App\Models\Category;
+use App\Models\Product;
+use App\Models\Slider;
 use Illuminate\View\View;
 
 class HomeController extends Controller
 {
     public function index(): View
     {
+
+        $sliders = Slider::all();
+        $banners = Banner::all();
+        $categories = [
+            'Cotton Cord',
+            'Wooden Beads',
+            'Wall Hanging',
+            'Bags',
+            'Plant Hanger',
+        ];
+
+        $bannerProducts = [];
+
+        foreach ($categories as $name) {
+            $category = Category::where('name', $name)->first();
+            if ($category) {
+                $product = Product::where('category_id', $category->id)->first();
+                if ($product) {
+                    $bannerProducts[$name] = $product;
+                }
+            }
+        }
+
         $newArrivals = [
             [
                 'name'          => 'Wall Hanging',
@@ -152,7 +179,7 @@ class HomeController extends Controller
             ],
         ];
 
-        return view('home', compact('newArrivals', 'bestSellers', 'itemsSale'));
+        return view('home', compact('newArrivals', 'bestSellers', 'itemsSale','sliders','banners','bannerProducts'));
     }
     public function detail()
     {

@@ -45,10 +45,10 @@
                         Our Story
                         <span class="absolute left-0 bottom-[-2px] w-0 h-[2px] bg-[#d94f4f] transition-all duration-300 group-hover:w-full"></span>
                     </a>
-                    <a href="#" style="font-family: Raleway, sans-serif;" class="text-[rgba(250,246,241,0.45)] text-[0.8rem] md:text-sm hover:text-[#FAF6F1] transition-all duration-300 no-underline relative group">
-                        Blog
-                        <span class="absolute left-0 bottom-[-2px] w-0 h-[2px] bg-[#d94f4f] transition-all duration-300 group-hover:w-full"></span>
-                    </a>
+{{--                    <a href="#" style="font-family: Raleway, sans-serif;" class="text-[rgba(250,246,241,0.45)] text-[0.8rem] md:text-sm hover:text-[#FAF6F1] transition-all duration-300 no-underline relative group">--}}
+{{--                        Blog--}}
+{{--                        <span class="absolute left-0 bottom-[-2px] w-0 h-[2px] bg-[#d94f4f] transition-all duration-300 group-hover:w-full"></span>--}}
+{{--                    </a>--}}
                     <a href="#" style="font-family: Raleway, sans-serif;" class="text-[rgba(250,246,241,0.45)] text-[0.8rem] md:text-sm hover:text-[#FAF6F1] transition-all duration-300 no-underline relative group">
                         Contact Us
                         <span class="absolute left-0 bottom-[-2px] w-0 h-[2px] bg-[#d94f4f] transition-all duration-300 group-hover:w-full"></span>

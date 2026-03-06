@@ -6,38 +6,36 @@
 
 <div class="relative">
     <div class="hero-owl owl-carousel owl-theme">
-        <div class="item relative">
-            <div class="relative flex items-center overflow-hidden h-screen min-h-[620px]">
-                <div class="absolute inset-0 bg-cover bg-center" style="background-image:url('{{ asset('img/slider1.jpg') }}')">
-                    <div class="absolute inset-0" style="background:linear-gradient(105deg,rgba(250,246,241,0.6) 0%,rgba(250,246,241,0.12) 60%)"></div>
-                </div>
-                <div class="relative z-10 ml-auto w-full max-w-[620px] px-8 py-12 lg:pr-[80px] lg:pl-[40px]" style="background:rgba(250,246,241,0.22);backdrop-filter:blur(10px)">
-                    <div class="slide-tag inline-block border border-charcoal/50 text-[0.55rem] tracking-ultra font-bold px-4 py-[6px] uppercase text-charcoal mb-5"># S A R A S - C R E A T I O N S</div>
-                    <h1 class="slide-title font-cormorant font-bold italic leading-none uppercase text-charcoal mb-10" style="font-size:clamp(3.2rem,6vw,5.8rem)">Elegant<br>Macrame Decor</h1>
-                    <div class="slide-btn-wrap">
-                        <a href="#" class="shop-btn relative inline-block border-[1.5px] border-charcoal px-[42px] py-[14px] text-[0.65rem] font-bold tracking-wide-2 uppercase text-charcoal bg-white/25 backdrop-blur-md overflow-hidden transition-colors duration-[350ms] no-underline">
-                            <span class="relative z-[1]">Explore Collection</span>
-                        </a>
+        @foreach($sliders as $slide)
+            <div class="item relative">
+                <div class="relative flex items-center overflow-hidden h-screen min-h-[620px]">
+                    <div class="absolute inset-0 bg-cover bg-center"
+                         style="background-image:url('{{ Storage::url($slide->image) }}')">
+                        <div class="absolute inset-0"
+                             style="background:linear-gradient(105deg,rgba(250,246,241,0.6) 0%,rgba(250,246,241,0.12) 60%)"></div>
+                    </div>
+                    <div class="relative z-10 ml-auto w-full max-w-[620px] px-8 py-12 lg:pr-[80px] lg:pl-[40px]"
+                         style="background:rgba(250,246,241,0.22);backdrop-filter:blur(10px)">
+
+                        <div class="slide-tag inline-block border border-charcoal/50 text-[0.55rem] tracking-ultra font-bold px-4 py-[6px] uppercase text-charcoal mb-5">
+                            {{ $slide->hashtag }}
+                        </div>
+
+                        <h1 class="slide-title font-cormorant font-bold italic leading-none uppercase text-charcoal mb-10"
+                            style="font-size:clamp(3.2rem,6vw,5.8rem)">
+                            {{ $slide->title }}
+                        </h1>
+
+                        <div class="slide-btn-wrap">
+                            <a href="#" class="shop-btn relative inline-block border-[1.5px] border-charcoal px-[42px] py-[14px] text-[0.65rem] font-bold tracking-wide-2 uppercase text-charcoal bg-white/25 backdrop-blur-md overflow-hidden transition-colors duration-[350ms] no-underline">
+                                <span class="relative z-[1]">Explore Collection</span>
+                            </a>
+                        </div>
+
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="item relative">
-            <div class="relative flex items-center overflow-hidden h-screen min-h-[620px]">
-                <div class="absolute inset-0 bg-cover bg-center" style="background-image:url('{{ asset('img/slider-2.jpg') }}')">
-                    <div class="absolute inset-0" style="background:linear-gradient(105deg,rgba(250,246,241,0.6) 0%,rgba(250,246,241,0.1) 60%)"></div>
-                </div>
-                <div class="relative z-10 ml-auto w-full max-w-[620px] px-8 py-12 lg:pr-[80px] lg:pl-[40px]" style="background:rgba(250,246,241,0.22);backdrop-filter:blur(10px)">
-                    <div class="slide-tag inline-block border border-charcoal/50 text-[0.55rem] tracking-ultra font-bold px-4 py-[6px] uppercase text-charcoal mb-5"># S A R A S - C R E A T I O N S</div>
-                    <h1 class="slide-title font-cormorant font-bold italic leading-none uppercase text-charcoal mb-10" style="font-size:clamp(3.2rem,6vw,5.8rem)">Premium<br>Cotton Macrame</h1>
-                    <div class="slide-btn-wrap">
-                        <a href="#" class="shop-btn relative inline-block border-[1.5px] border-charcoal px-[42px] py-[14px] text-[0.65rem] font-bold tracking-wide-2 uppercase text-charcoal bg-white/25 backdrop-blur-md overflow-hidden transition-colors duration-[350ms] no-underline">
-                            <span class="relative z-[1]">Discover Now</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
+        @endforeach
     </div>
     <div id="slideCounter" class="writing-vertical absolute bottom-[90px] right-[10px] md:bottom-[100px] md:right-5 z-[300] text-[0.6rem] font-bold tracking-wide-5 text-charcoal">01 / 02</div>
     <div id="slideProgress" class="absolute bottom-0 left-0 h-[3px] bg-rouge w-0 z-[400] transition-none"></div>
@@ -63,16 +61,9 @@
 
 <div class="reveal overflow-hidden whitespace-nowrap bg-charcoal text-cream py-3">
     <div class="marquee-inner inline-block">
-        <span class="text-[0.6rem] font-bold tracking-wide-3 uppercase px-12">New Collection<span class="text-rouge"> ✦ </span></span>
-        <span class="text-[0.6rem] font-bold tracking-wide-3 uppercase px-12">Trusted Shipping<span class="text-rouge"> ✦ </span></span>
-        <span class="text-[0.6rem] font-bold tracking-wide-3 uppercase px-12">Handycraft<span class="text-rouge"> ✦ </span></span>
-        <span class="text-[0.6rem] font-bold tracking-wide-3 uppercase px-12">2026 Collection<span class="text-rouge"> ✦ </span></span>
-        <span class="text-[0.6rem] font-bold tracking-wide-3 uppercase px-12">Sustainable Materials<span class="text-rouge"> ✦ </span></span>
-        <span class="text-[0.6rem] font-bold tracking-wide-3 uppercase px-12">New Collection<span class="text-rouge"> ✦ </span></span>
-        <span class="text-[0.6rem] font-bold tracking-wide-3 uppercase px-12">Trusted Shipping<span class="text-rouge"> ✦ </span></span>
-        <span class="text-[0.6rem] font-bold tracking-wide-3 uppercase px-12">Handycraft<span class="text-rouge"> ✦ </span></span>
-        <span class="text-[0.6rem] font-bold tracking-wide-3 uppercase px-12">2026 Collection<span class="text-rouge"> ✦ </span></span>
-        <span class="text-[0.6rem] font-bold tracking-wide-3 uppercase px-12">Sustainable Materials<span class="text-rouge"> ✦ </span></span>
+        @foreach($banners as $banner)
+            <span class="text-[0.6rem] font-bold tracking-wide-3 uppercase px-12">{{ $banner->name }}<span class="text-rouge"> ✦ </span></span>
+        @endforeach
     </div>
 </div>
 
@@ -80,56 +71,87 @@
     <div class="flex flex-wrap">
         <div class="w-full lg:w-3/4 flex-none">
             <div class="flex flex-wrap">
-                <div class="banner-card reveal-left relative overflow-hidden w-full h-[380px]" data-md-width="66.666%">
-                    <div class="bg-img" style="background-image:url('{{ asset('img/cotton-cord.jpg') }}')"></div>
-                    <div class="absolute inset-0 flex items-start p-8 z-10">
-                        <div>
-                            <h3 class="font-cormorant font-semibold leading-[1.25] text-[#2a2a2a] mb-5" style="font-size:clamp(1.6rem,2.5vw,2.2rem)">Macrame<br/>Twisted Cotton Cord</h3>
-                            <a href="#" class="banner-link text-[0.6rem] font-bold tracking-wide-2 uppercase text-charcoal no-underline relative pb-1 inline-block">Shop now</a>
+
+                {{-- First Card --}}
+                @if(isset($bannerProducts['Cotton Cord']))
+                    <div class="banner-card reveal-left relative overflow-hidden w-full h-[380px]" data-md-width="66.666%">
+                        <div class="bg-img" style="background-image:url('{{ Storage::url($bannerProducts['Cotton Cord']->image) }}')"></div>
+                        <div class="absolute inset-0 flex items-start p-8 z-10">
+                            <div>
+                                <h3 class="font-cormorant font-semibold leading-[1.25] text-[#2a2a2a] mb-5" style="font-size:clamp(1.6rem,2.5vw,2.2rem)">
+                                    {{ $bannerProducts['Cotton Cord']->title }}
+                                </h3>
+                                <a href="#" class="banner-link text-[0.6rem] font-bold tracking-wide-2 uppercase text-charcoal no-underline relative pb-1 inline-block">Shop now</a>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="banner-card reveal relative overflow-hidden w-full h-[380px] bg-[#F5EDE6]" data-md-width="33.333%">
-                    <div class="bg-img" style="background-image:url('{{ asset('img/banner-img2.avif') }}')"></div>
-                    <div class="absolute inset-0 flex items-center p-8 z-10">
-                        <div>
-                            <p class="text-[0.55rem] font-bold tracking-wide-3 uppercase text-rouge mb-2">Decor</p>
-                            <h3 class="font-cormorant font-semibold leading-[1.25] text-[#2a2a2a] mb-5" style="font-size:clamp(1.6rem,2.5vw,2.2rem)">Macrame<br/>Wooden Decor</h3>
-                            <a href="#" class="banner-link text-[0.6rem] font-bold tracking-wide-2 uppercase text-charcoal no-underline relative pb-1 inline-block">Shop now</a>
+                @endif
+
+                {{-- Second Card --}}
+                @if(isset($bannerProducts['Wooden Beads']))
+                    <div class="banner-card reveal relative overflow-hidden w-full h-[380px] bg-[#F5EDE6]" data-md-width="33.333%">
+                        <div class="bg-img" style="background-image:url('{{ Storage::url($bannerProducts['Wooden Beads']->image) }}')"></div>
+                        <div class="absolute inset-0 flex items-center p-8 z-10">
+                            <div>
+                                <p class="text-[0.55rem] font-bold tracking-wide-3 uppercase text-rouge mb-2">{{ $bannerProducts['Wooden Beads']->category->name }}</p>
+                                <h3 class="font-cormorant font-semibold leading-[1.25] text-[#2a2a2a] mb-5" style="font-size:clamp(1.6rem,2.5vw,2.2rem)">
+                                    {{ $bannerProducts['Wooden Beads']->title }}
+                                </h3>
+                                <a href="#" class="banner-link text-[0.6rem] font-bold tracking-wide-2 uppercase text-charcoal no-underline relative pb-1 inline-block">Shop now</a>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="banner-card reveal relative overflow-hidden w-full h-[380px]" data-md-width="33.333%">
-                    <div class="bg-img" style="background-image:url('{{ asset('img/banner-img5.webp') }}')"></div>
-                    <div class="absolute inset-0 flex items-end justify-end p-8 z-10">
-                        <div class="text-left">
-                            <a href="#" class="banner-link text-[0.6rem] font-bold tracking-wide-2 uppercase text-charcoal no-underline relative pb-1 inline-block">Shop now</a>
+                @endif
+
+                {{-- Third Card --}}
+                @if(isset($bannerProducts['Wall Hanging']))
+                    <div class="banner-card reveal relative overflow-hidden w-full h-[380px]" data-md-width="33.333%">
+                        <div class="bg-img" style="background-image:url('{{ Storage::url($bannerProducts['Wall Hanging']->image) }}')"></div>
+                        <div class="absolute inset-0 flex items-end justify-end p-8 z-10">
+                            <div class="text-left">
+                                <a href="#" class="banner-link text-[0.6rem] font-bold tracking-wide-2 uppercase text-charcoal no-underline relative pb-1 inline-block">
+                                    {{ $bannerProducts['Wall Hanging']->title }}
+                                </a>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="banner-card reveal-right relative overflow-hidden w-full h-[380px]" data-md-width="66.666%">
-                    <div class="bg-img" style="background-image:url('{{ asset('img/banner-img-9.png') }}')"></div>
-                    <div class="absolute inset-0 flex items-center justify-center text-center p-8 z-10">
-                        <div>
-                            <h3 class="font-cormorant font-semibold leading-[1.25] text-[#2a2a2a] mb-5 tracking-wide-2" style="font-size:clamp(1.6rem,2.5vw,2.2rem)">Macrame<br/>Planters</h3>
-                            <a href="#" class="banner-link text-[0.6rem] font-bold tracking-wide-2 uppercase text-charcoal no-underline relative pb-1 inline-block">Shop now</a>
+                @endif
+
+                {{-- Fourth Card --}}
+                @if(isset($bannerProducts['Bags']))
+                    <div class="banner-card reveal-right relative overflow-hidden w-full h-[380px]" data-md-width="66.666%">
+                        <div class="bg-img" style="background-image:url('{{ Storage::url($bannerProducts['Plant Hanger']->image) }}')"></div>
+                        <div class="absolute inset-0 flex items-center justify-center text-center p-8 z-10">
+                            <div>
+                                <h3 class="font-cormorant font-semibold leading-[1.25] text-[#2a2a2a] mb-5 tracking-wide-2" style="font-size:clamp(1.6rem,2.5vw,2.2rem)">
+                                    {{ $bannerProducts['Plant Hanger']->title }}
+                                </h3>
+                                <a href="#" class="banner-link text-[0.6rem] font-bold tracking-wide-2 uppercase text-charcoal no-underline relative pb-1 inline-block">Shop now</a>
+                            </div>
                         </div>
+                    </div>
+                @endif
+
+            </div>
+        </div>
+
+        {{-- Fifth Card --}}
+        @if(isset($bannerProducts['Wall Hanging']))
+            <div class="banner-card reveal-right relative overflow-hidden w-full h-[500px] flex-none" data-lg="true">
+                <div class="bg-img" style="background-image:url('{{ Storage::url($bannerProducts['Wall Hanging']->image) }}')"></div>
+                <div class="absolute inset-0 flex items-start justify-center text-center pt-10 z-10">
+                    <div>
+                        <h3 class="font-cormorant font-semibold leading-[1.25] text-[#2a2a2a] mb-5 text-[2rem]">
+                            {{ $bannerProducts['Wall Hanging']->title }}
+                        </h3>
+                        <a href="#" class="banner-link text-[0.6rem] font-bold tracking-wide-2 uppercase text-charcoal no-underline relative pb-1 inline-block">Shop now</a>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="banner-card reveal-right relative overflow-hidden w-full h-[500px] flex-none" data-lg="true">
-            <div class="bg-img" style="background-image:url('{{ asset('img/banner-img1.webp') }}')"></div>
-            <div class="absolute inset-0 flex items-start justify-center text-center pt-10 z-10">
-                <div>
-                    <h3 class="font-cormorant font-semibold leading-[1.25] text-[#2a2a2a] mb-5 text-[2rem]">Macrame<br/>Collection</h3>
-                    <a href="#" class="banner-link text-[0.6rem] font-bold tracking-wide-2 uppercase text-charcoal no-underline relative pb-1 inline-block">Shop now</a>
-                </div>
-            </div>
-        </div>
+        @endif
+
     </div>
 </section>
-
 <section class="bg-cream border-t border-charcoal/[0.07] border-b border-charcoal/[0.07]">
     <div class="max-w-[1200px] mx-auto px-8 py-16 grid gap-12 text-center" style="grid-template-columns:repeat(auto-fit,minmax(200px,1fr))">
         <div class="reveal delay-[100ms]">
