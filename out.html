@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shop — Sara&#039;s Creations</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Raleway:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+    <link rel="stylesheet" href="http://localhost/css/home.css">
+
+        <link rel="stylesheet" href="http://localhost/css/category.css">
+</head>
+<body class="font-raleway bg-warm-white overflow-x-hidden">
+
+<nav class="absolute top-0 left-0 right-0 z-[200] px-6 lg:px-[60px] py-6" style="background:rgba(250,246,241,0.22);backdrop-filter:blur(10px)">
+    <div class="flex items-center justify-between">
+        <a href="http://localhost" class="font-cormorant text-[1.8rem] font-bold tracking-[-0.02em] text-charcoal no-underline">
+            Sara's<span class="text-rouge">.</span>
+        </a>
+
+        <ul class="hidden lg:flex gap-11 list-none items-center">
+            <li>
+                <a href="http://localhost"
+                   class="nav-link text-[0.65rem] font-bold tracking-wide-4 uppercase text-charcoal relative pb-[3px] transition-colors duration-300 hover:text-rouge">
+                    Home
+                </a>
+            </li>
+
+            <li><a href="http://localhost/categories" class="nav-link text-[0.65rem] font-bold tracking-wide-4 uppercase text-charcoal relative pb-[3px] transition-colors duration-300 hover:text-rouge"> Shop</a></li>
+            <li><a href="http://localhost" class="nav-link text-[0.65rem] font-bold tracking-wide-4 uppercase text-charcoal relative pb-[3px] transition-colors duration-300 hover:text-rouge">Blogs</a></li>
+            <li><a href="http://localhost/about-us" class="nav-link text-[0.65rem] font-bold tracking-wide-4 uppercase text-charcoal relative pb-[3px] transition-colors duration-300 hover:text-rouge">About Us</a></li>
+            <li><a href="http://localhost/contact-us" class="nav-link text-[0.65rem] font-bold tracking-wide-4 uppercase text-charcoal relative pb-[3px] transition-colors duration-300 hover:text-rouge">Contact</a></li>
+        </ul>
+
+        <div class="flex items-center gap-3">
+            <a href="#" class="w-[38px] h-[38px] border border-charcoal/20 rounded-full flex items-center justify-center text-charcoal text-[0.7rem] transition-all duration-[250ms] hover:bg-charcoal hover:text-white hover:border-charcoal">
+                <i class="fas fa-search"></i>
+            </a>
+            <a href="#" class="relative w-[38px] h-[38px] border border-charcoal/20 rounded-full flex items-center justify-center text-charcoal text-[0.7rem] transition-all duration-[250ms] hover:bg-charcoal hover:text-white hover:border-charcoal">
+                <i class="fas fa-shopping-bag"></i>
+                <span class="absolute -top-1 -right-1 w-4 h-4 bg-rouge text-white text-[9px] font-bold flex items-center justify-center rounded-full">0</span>
+            </a>
+            <button id="menuToggle" class="lg:hidden w-[38px] h-[38px] border border-charcoal/20 rounded-full flex items-center justify-center text-charcoal text-[0.75rem] transition-all duration-[250ms] hover:bg-charcoal hover:text-white">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </div>
+
+    <div id="mobileMenu" style="display:none" class="bg-white/95 backdrop-blur-sm px-2 pb-4 mt-4 rounded-lg shadow-xl border-t border-charcoal/[0.08]">
+        <a href="http://localhost" class="py-[0.6rem] text-[0.65rem] font-bold tracking-[0.2em] uppercase text-charcoal">Home</a>
+        <a href="http://localhost/categories" class="py-[0.6rem] text-[0.65rem] font-bold tracking-[0.2em] uppercase text-charcoal">Shop</a>
+        <a href="#" class="py-[0.6rem] text-[0.65rem] font-bold tracking-[0.2em] uppercase text-charcoal">Blogs</a>
+        <a href="#" class="py-[0.6rem] text-[0.65rem] font-bold tracking-[0.2em] uppercase text-charcoal">About Us</a>
+        <a href="#" class="py-[0.6rem] text-[0.65rem] font-bold tracking-[0.2em] uppercase text-charcoal">Contact</a>
+    </div>
+</nav>
+
+
+
+
+<div class="page-hero relative px-[60px] pt-[120px] pb-[56px] overflow-hidden bg-no-repeat bg-cover bg-opicity-50" style="background-image:url(http://localhost/img/slider1.jpg)">
+    <div class="flex items-center gap-[10px] mb-[22px] text-xs2 font-bold tracking-wide-4 uppercase text-[rgba(250,246,241,0.3)]">
+        <a href="http://localhost" class="text-[rgba(250,246,241,0.3)] no-underline hover:text-rouge transition-colors duration-[250ms]">Home</a>
+        <span class="text-[rgba(250,246,241,0.12)]">›</span>
+        <span class="text-rouge">Shop</span>
+    </div>
+    <h1 class="font-cormorant font-bold italic text-cream leading-none mb-[14px] text-[clamp(3rem,6vw,5.5rem)]">The Collection</h1>
+    <div class="flex items-center gap-[18px] text-xs3 font-bold tracking-wide-3 uppercase text-[rgba(250,246,241,0.3)]">
+        <span>Handcrafted Macramé</span>
+        <div class="w-[3px] h-[3px] rounded-full bg-rouge flex-shrink-0"></div>
+        <span>Cotton Arts</span>
+        <div class="w-[3px] h-[3px] rounded-full bg-rouge flex-shrink-0"></div>
+        <span>Boho Decor</span>
+    </div>
+    <div class="absolute bottom-0 left-0 right-0 h-[3px]" style="background:linear-gradient(90deg,#d94f4f,#E8C9B8,#C9B49A,#d94f4f)"></div>
+</div>
+
+
+<div class="sticky top-[72px] z-[400] bg-cream border-b border-[rgba(30,30,30,0.08)]">
+    <div id="catBar" class="max-w-screen-shop mx-auto px-[60px] flex items-stretch overflow-x-auto">
+        <button
+            class="cat-tab active flex items-center gap-2 px-[26px] py-[18px] text-[0.61rem] font-bold tracking-wide-3 uppercase text-[rgba(30,30,30,0.42)] bg-transparent border-none cursor-pointer whitespace-nowrap flex-shrink-0"
+            id="ctab-all"
+            onclick="switchCat('all')">
+            <i class="fas fa-layer-group cat-icon text-[0.85rem] transition-transform duration-300"></i>
+            All Products
+            <span class="cat-count text-[0.54rem] font-bold bg-[rgba(30,30,30,0.07)] text-[rgba(30,30,30,0.38)] px-[7px] py-[2px] rounded-[20px] transition-all duration-[250ms]">
+                6
+            </span>
+        </button>
+                    <button
+                class="cat-tab flex items-center gap-2 px-[26px] py-[18px] text-[0.61rem] font-bold tracking-wide-3 uppercase text-[rgba(30,30,30,0.42)] bg-transparent border-none cursor-pointer whitespace-nowrap flex-shrink-0"
+                id="ctab-cotton-cord"
+                onclick="switchCat('cotton-cord')">
+                <i class="fas fa-tag cat-icon text-[0.85rem] transition-transform duration-300"></i>
+                Cotton Cord
+                <span class="cat-count text-[0.54rem] font-bold bg-[rgba(30,30,30,0.07)] text-[rgba(30,30,30,0.38)] px-[7px] py-[2px] rounded-[20px] transition-all duration-[250ms]">
+            1
+        </span>
+            </button>
+                    <button
+                class="cat-tab flex items-center gap-2 px-[26px] py-[18px] text-[0.61rem] font-bold tracking-wide-3 uppercase text-[rgba(30,30,30,0.42)] bg-transparent border-none cursor-pointer whitespace-nowrap flex-shrink-0"
+                id="ctab-wall-hanging"
+                onclick="switchCat('wall-hanging')">
+                <i class="fas fa-tag cat-icon text-[0.85rem] transition-transform duration-300"></i>
+                Wall Hanging
+                <span class="cat-count text-[0.54rem] font-bold bg-[rgba(30,30,30,0.07)] text-[rgba(30,30,30,0.38)] px-[7px] py-[2px] rounded-[20px] transition-all duration-[250ms]">
+            2
+        </span>
+            </button>
+                    <button
+                class="cat-tab flex items-center gap-2 px-[26px] py-[18px] text-[0.61rem] font-bold tracking-wide-3 uppercase text-[rgba(30,30,30,0.42)] bg-transparent border-none cursor-pointer whitespace-nowrap flex-shrink-0"
+                id="ctab-plant-hanger"
+                onclick="switchCat('plant-hanger')">
+                <i class="fas fa-tag cat-icon text-[0.85rem] transition-transform duration-300"></i>
+                Plant Hanger
+                <span class="cat-count text-[0.54rem] font-bold bg-[rgba(30,30,30,0.07)] text-[rgba(30,30,30,0.38)] px-[7px] py-[2px] rounded-[20px] transition-all duration-[250ms]">
+            1
+        </span>
+            </button>
+                    <button
+                class="cat-tab flex items-center gap-2 px-[26px] py-[18px] text-[0.61rem] font-bold tracking-wide-3 uppercase text-[rgba(30,30,30,0.42)] bg-transparent border-none cursor-pointer whitespace-nowrap flex-shrink-0"
+                id="ctab-bags"
+                onclick="switchCat('bags')">
+                <i class="fas fa-tag cat-icon text-[0.85rem] transition-transform duration-300"></i>
+                Bags
+                <span class="cat-count text-[0.54rem] font-bold bg-[rgba(30,30,30,0.07)] text-[rgba(30,30,30,0.38)] px-[7px] py-[2px] rounded-[20px] transition-all duration-[250ms]">
+            1
+        </span>
+            </button>
+                    <button
+                class="cat-tab flex items-center gap-2 px-[26px] py-[18px] text-[0.61rem] font-bold tracking-wide-3 uppercase text-[rgba(30,30,30,0.42)] bg-transparent border-none cursor-pointer whitespace-nowrap flex-shrink-0"
+                id="ctab-wooden-beads"
+                onclick="switchCat('wooden-beads')">
+                <i class="fas fa-tag cat-icon text-[0.85rem] transition-transform duration-300"></i>
+                Wooden Beads
+                <span class="cat-count text-[0.54rem] font-bold bg-[rgba(30,30,30,0.07)] text-[rgba(30,30,30,0.38)] px-[7px] py-[2px] rounded-[20px] transition-all duration-[250ms]">
+            1
+        </span>
+            </button>
+                    <button
+                class="cat-tab flex items-center gap-2 px-[26px] py-[18px] text-[0.61rem] font-bold tracking-wide-3 uppercase text-[rgba(30,30,30,0.42)] bg-transparent border-none cursor-pointer whitespace-nowrap flex-shrink-0"
+                id="ctab-wooden-rings"
+                onclick="switchCat('wooden-rings')">
+                <i class="fas fa-tag cat-icon text-[0.85rem] transition-transform duration-300"></i>
+                Wooden Rings
+                <span class="cat-count text-[0.54rem] font-bold bg-[rgba(30,30,30,0.07)] text-[rgba(30,30,30,0.38)] px-[7px] py-[2px] rounded-[20px] transition-all duration-[250ms]">
+            0
+        </span>
+            </button>
+                    <button
+                class="cat-tab flex items-center gap-2 px-[26px] py-[18px] text-[0.61rem] font-bold tracking-wide-3 uppercase text-[rgba(30,30,30,0.42)] bg-transparent border-none cursor-pointer whitespace-nowrap flex-shrink-0"
+                id="ctab-steel-rings"
+                onclick="switchCat('steel-rings')">
+                <i class="fas fa-tag cat-icon text-[0.85rem] transition-transform duration-300"></i>
+                Steel Rings
+                <span class="cat-count text-[0.54rem] font-bold bg-[rgba(30,30,30,0.07)] text-[rgba(30,30,30,0.38)] px-[7px] py-[2px] rounded-[20px] transition-all duration-[250ms]">
+            0
+        </span>
+            </button>
+                    <button
+                class="cat-tab flex items-center gap-2 px-[26px] py-[18px] text-[0.61rem] font-bold tracking-wide-3 uppercase text-[rgba(30,30,30,0.42)] bg-transparent border-none cursor-pointer whitespace-nowrap flex-shrink-0"
+                id="ctab-wooden-dowels"
+                onclick="switchCat('wooden-dowels')">
+                <i class="fas fa-tag cat-icon text-[0.85rem] transition-transform duration-300"></i>
+                Wooden Dowels
+                <span class="cat-count text-[0.54rem] font-bold bg-[rgba(30,30,30,0.07)] text-[rgba(30,30,30,0.38)] px-[7px] py-[2px] rounded-[20px] transition-all duration-[250ms]">
+            0
+        </span>
+            </button>
+                    <button
+                class="cat-tab flex items-center gap-2 px-[26px] py-[18px] text-[0.61rem] font-bold tracking-wide-3 uppercase text-[rgba(30,30,30,0.42)] bg-transparent border-none cursor-pointer whitespace-nowrap flex-shrink-0"
+                id="ctab-wooden-shelf"
+                onclick="switchCat('wooden-shelf')">
+                <i class="fas fa-tag cat-icon text-[0.85rem] transition-transform duration-300"></i>
+                Wooden Shelf
+                <span class="cat-count text-[0.54rem] font-bold bg-[rgba(30,30,30,0.07)] text-[rgba(30,30,30,0.38)] px-[7px] py-[2px] rounded-[20px] transition-all duration-[250ms]">
+            0
+        </span>
+            </button>
+                    <button
+                class="cat-tab flex items-center gap-2 px-[26px] py-[18px] text-[0.61rem] font-bold tracking-wide-3 uppercase text-[rgba(30,30,30,0.42)] bg-transparent border-none cursor-pointer whitespace-nowrap flex-shrink-0"
+                id="ctab-bookmarks"
+                onclick="switchCat('bookmarks')">
+                <i class="fas fa-tag cat-icon text-[0.85rem] transition-transform duration-300"></i>
+                Bookmarks
+                <span class="cat-count text-[0.54rem] font-bold bg-[rgba(30,30,30,0.07)] text-[rgba(30,30,30,0.38)] px-[7px] py-[2px] rounded-[20px] transition-all duration-[250ms]">
+            0
+        </span>
+            </button>
+                    <button
+                class="cat-tab flex items-center gap-2 px-[26px] py-[18px] text-[0.61rem] font-bold tracking-wide-3 uppercase text-[rgba(30,30,30,0.42)] bg-transparent border-none cursor-pointer whitespace-nowrap flex-shrink-0"
+                id="ctab-bracelets"
+                onclick="switchCat('bracelets')">
+                <i class="fas fa-tag cat-icon text-[0.85rem] transition-transform duration-300"></i>
+                Bracelets
+                <span class="cat-count text-[0.54rem] font-bold bg-[rgba(30,30,30,0.07)] text-[rgba(30,30,30,0.38)] px-[7px] py-[2px] rounded-[20px] transition-all duration-[250ms]">
+            0
+        </span>
+            </button>
+                    <button
+                class="cat-tab flex items-center gap-2 px-[26px] py-[18px] text-[0.61rem] font-bold tracking-wide-3 uppercase text-[rgba(30,30,30,0.42)] bg-transparent border-none cursor-pointer whitespace-nowrap flex-shrink-0"
+                id="ctab-christmas"
+                onclick="switchCat('christmas')">
+                <i class="fas fa-tag cat-icon text-[0.85rem] transition-transform duration-300"></i>
+                Christmas
+                <span class="cat-count text-[0.54rem] font-bold bg-[rgba(30,30,30,0.07)] text-[rgba(30,30,30,0.38)] px-[7px] py-[2px] rounded-[20px] transition-all duration-[250ms]">
+            0
+        </span>
+            </button>
+                    <button
+                class="cat-tab flex items-center gap-2 px-[26px] py-[18px] text-[0.61rem] font-bold tracking-wide-3 uppercase text-[rgba(30,30,30,0.42)] bg-transparent border-none cursor-pointer whitespace-nowrap flex-shrink-0"
+                id="ctab-circles"
+                onclick="switchCat('circles')">
+                <i class="fas fa-tag cat-icon text-[0.85rem] transition-transform duration-300"></i>
+                Circles
+                <span class="cat-count text-[0.54rem] font-bold bg-[rgba(30,30,30,0.07)] text-[rgba(30,30,30,0.38)] px-[7px] py-[2px] rounded-[20px] transition-all duration-[250ms]">
+            0
+        </span>
+            </button>
+                    <button
+                class="cat-tab flex items-center gap-2 px-[26px] py-[18px] text-[0.61rem] font-bold tracking-wide-3 uppercase text-[rgba(30,30,30,0.42)] bg-transparent border-none cursor-pointer whitespace-nowrap flex-shrink-0"
+                id="ctab-flowers"
+                onclick="switchCat('flowers')">
+                <i class="fas fa-tag cat-icon text-[0.85rem] transition-transform duration-300"></i>
+                Flowers
+                <span class="cat-count text-[0.54rem] font-bold bg-[rgba(30,30,30,0.07)] text-[rgba(30,30,30,0.38)] px-[7px] py-[2px] rounded-[20px] transition-all duration-[250ms]">
+            0
+        </span>
+            </button>
+                    <button
+                class="cat-tab flex items-center gap-2 px-[26px] py-[18px] text-[0.61rem] font-bold tracking-wide-3 uppercase text-[rgba(30,30,30,0.42)] bg-transparent border-none cursor-pointer whitespace-nowrap flex-shrink-0"
+                id="ctab-keychains"
+                onclick="switchCat('keychains')">
+                <i class="fas fa-tag cat-icon text-[0.85rem] transition-transform duration-300"></i>
+                Keychains
+                <span class="cat-count text-[0.54rem] font-bold bg-[rgba(30,30,30,0.07)] text-[rgba(30,30,30,0.38)] px-[7px] py-[2px] rounded-[20px] transition-all duration-[250ms]">
+            0
+        </span>
+            </button>
+                    <button
+                class="cat-tab flex items-center gap-2 px-[26px] py-[18px] text-[0.61rem] font-bold tracking-wide-3 uppercase text-[rgba(30,30,30,0.42)] bg-transparent border-none cursor-pointer whitespace-nowrap flex-shrink-0"
+                id="ctab-lighting"
+                onclick="switchCat('lighting')">
+                <i class="fas fa-tag cat-icon text-[0.85rem] transition-transform duration-300"></i>
+                Lighting
+                <span class="cat-count text-[0.54rem] font-bold bg-[rgba(30,30,30,0.07)] text-[rgba(30,30,30,0.38)] px-[7px] py-[2px] rounded-[20px] transition-all duration-[250ms]">
+            0
+        </span>
+            </button>
+                    <button
+                class="cat-tab flex items-center gap-2 px-[26px] py-[18px] text-[0.61rem] font-bold tracking-wide-3 uppercase text-[rgba(30,30,30,0.42)] bg-transparent border-none cursor-pointer whitespace-nowrap flex-shrink-0"
+                id="ctab-patterns"
+                onclick="switchCat('patterns')">
+                <i class="fas fa-tag cat-icon text-[0.85rem] transition-transform duration-300"></i>
+                Patterns
+                <span class="cat-count text-[0.54rem] font-bold bg-[rgba(30,30,30,0.07)] text-[rgba(30,30,30,0.38)] px-[7px] py-[2px] rounded-[20px] transition-all duration-[250ms]">
+            0
+        </span>
+            </button>
+            </div>
+</div>
+
+
+<div class="max-w-screen-shop mx-auto px-[60px] py-[22px] flex items-center justify-between flex-wrap gap-[14px] border-b border-[rgba(30,30,30,0.06)]">
+    <div class="flex items-center gap-[14px] flex-wrap">
+        <span class="text-xs4 font-bold tracking-wide-1 uppercase text-[rgba(30,30,30,0.42)]">
+            <strong id="countNum" class="text-charcoal">6</strong> Products
+        </span>
+        <div class="flex gap-2 flex-wrap" id="chipsWrap"></div>
+    </div>
+    <div class="flex items-center gap-[10px]">
+        <select class="sort-select py-[9px] pl-[14px] pr-[32px] border-[1.5px] border-[rgba(30,30,30,0.13)] bg-white appearance-none cursor-pointer font-raleway text-xs4 font-semibold text-charcoal tracking-[0.08em] transition-colors duration-[250ms]"
+                onchange="sortProducts(this.value)">
+            <option value="">Featured</option>
+            <option value="price-asc">Price: Low–High</option>
+            <option value="price-desc">Price: High–Low</option>
+            <option value="rating">Top Rated</option>
+        </select>
+        <div class="view-btns flex gap-0">
+            <button class="view-btn w-[36px] h-[36px] border-[1.5px] border-[rgba(30,30,30,0.13)] bg-charcoal text-white border-charcoal flex items-center justify-center cursor-pointer text-[0.68rem] transition-all duration-[220ms]"
+                    onclick="setView('',this)" title="4 columns">
+                <i class="fas fa-th"></i>
+            </button>
+            <button class="view-btn w-[36px] h-[36px] border-[1.5px] border-[rgba(30,30,30,0.13)] bg-white flex items-center justify-center cursor-pointer text-[rgba(30,30,30,0.42)] text-[0.68rem] transition-all duration-[220ms] hover:bg-charcoal hover:text-white hover:border-charcoal"
+                    onclick="setView('cols-3',this)" title="3 columns">
+                <i class="fas fa-th-large"></i>
+            </button>
+            <button class="view-btn w-[36px] h-[36px] border-[1.5px] border-[rgba(30,30,30,0.13)] bg-white flex items-center justify-center cursor-pointer text-[rgba(30,30,30,0.42)] text-[0.68rem] transition-all duration-[220ms] hover:bg-charcoal hover:text-white hover:border-charcoal"
+                    onclick="setView('cols-5',this)" title="5 columns">
+                <i class="fas fa-border-all"></i>
+            </button>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="max-w-screen-shop mx-auto px-[60px] pt-[40px] pb-[80px]">
+
+    <div class="tab-panel active" id="panel-all">
+        <div class="cat-heading flex items-end justify-between mb-9 gap-4" id="heading-all">
+            <div>
+                <p class="text-tag font-extrabold tracking-wide-7 uppercase text-rouge mb-2">✦ Full Collection</p>
+                <h2 class="font-cormorant font-bold italic text-charcoal leading-none text-[clamp(2rem,3.5vw,3rem)]">All Products</h2>
+                <p class="text-xs7 text-[rgba(30,30,30,0.42)] leading-[1.7] mt-2 max-w-[420px]">Every handcrafted piece — from statement wall art to delicate plant hangers.</p>
+                <div class="cat-heading-line"></div>
+            </div>
+        </div>
+
+        <div class="products-grid grid grid-cols-shop-4 gap-7 transition-opacity duration-[350ms]" id="grid-all">
+                            <div class="product-card" style="transition-delay:0ms" data-price="1300.00" data-rating="5">
+            <div class="relative overflow-hidden bg-cream mb-[14px]" style="padding-bottom:120%">
+                <img class="card-img absolute inset-0 w-full h-full object-cover" src="http://localhost/storage/product/01KK1EMJZ7MTR2E7SYVYKQP50R.jpg" alt="Macrame Twisted Cotton Cord"/>
+                <img class="card-img-hover absolute inset-0 w-full h-full object-cover" src="http://localhost/storage/product/01KK1EMJZ7MTR2E7SYVYKQP50R.jpg" alt="Macrame Twisted Cotton Cord"/>
+                <div class="card-overlay absolute inset-0 bg-[rgba(30,30,30,0.07)] opacity-0 flex flex-col items-center justify-end pb-[18px] gap-2">
+                    <button class="btn-cart px-[22px] py-[10px] bg-white text-charcoal border-none cursor-pointer font-raleway text-xs2 font-bold tracking-wide-3 uppercase">Add to Cart</button>
+                    <button class="btn-view px-[18px] py-[6px] bg-transparent text-white border border-[rgba(255,255,255,0.45)] cursor-pointer font-raleway text-[0.56rem] font-bold tracking-wide-2 uppercase">Quick View</button>
+                </div>
+                <button class="wish-btn absolute top-3 right-3 z-[2] w-[32px] h-[32px] rounded-full bg-[rgba(253,250,247,0.82)] backdrop-blur-sm border-none cursor-pointer flex items-center justify-center text-[0.72rem] text-[rgba(30,30,30,0.38)] transition-all duration-[250ms] hover:scale-[1.18] hover:text-rouge hover:bg-white"
+                        onclick="toggleWish(this)">
+                    <i class="fa-regular fa-heart"></i>
+                </button>
+            </div>
+            <div class="text-center">
+                <p class="text-tag font-bold tracking-wide-5 uppercase text-[rgba(30,30,30,0.42)] mb-[5px]">
+                    Cotton Cord
+                </p>
+                <h3 class="font-cormorant text-[1.05rem] font-semibold text-charcoal mb-[5px]">Macrame Twisted Cotton Cord</h3>
+                <div class="flex items-center justify-center gap-[2px] mb-[6px]"><span class="text-[0.55rem] text-[#d4a843]">★</span><span class="text-[0.55rem] text-[#d4a843]">★</span><span class="text-[0.55rem] text-[#d4a843]">★</span><span class="text-[0.55rem] text-[#d4a843]">★</span><span class="text-[0.55rem] text-[#d4a843]">★</span><span class="text-[0.56rem] text-[rgba(30,30,30,0.42)] ml-1">(24)</span>
+                </div>
+                <p class="font-cormorant text-[1.05rem] font-semibold text-charcoal">
+                    <span>$1,300.00</span>
+                </p>
+            </div>
+        </div>
+                            <div class="product-card" style="transition-delay:55ms" data-price="5200.00" data-rating="5">
+            <div class="relative overflow-hidden bg-cream mb-[14px]" style="padding-bottom:120%">
+                <img class="card-img absolute inset-0 w-full h-full object-cover" src="http://localhost/storage/product/01KK1ENR3R8SWX6V9KR9XNA473.avif" alt="Macrame Wall Hanging"/>
+                <img class="card-img-hover absolute inset-0 w-full h-full object-cover" src="http://localhost/storage/product/01KK1ENR3R8SWX6V9KR9XNA473.avif" alt="Macrame Wall Hanging"/>
+                <div class="card-overlay absolute inset-0 bg-[rgba(30,30,30,0.07)] opacity-0 flex flex-col items-center justify-end pb-[18px] gap-2">
+                    <button class="btn-cart px-[22px] py-[10px] bg-white text-charcoal border-none cursor-pointer font-raleway text-xs2 font-bold tracking-wide-3 uppercase">Add to Cart</button>
+                    <button class="btn-view px-[18px] py-[6px] bg-transparent text-white border border-[rgba(255,255,255,0.45)] cursor-pointer font-raleway text-[0.56rem] font-bold tracking-wide-2 uppercase">Quick View</button>
+                </div>
+                <button class="wish-btn absolute top-3 right-3 z-[2] w-[32px] h-[32px] rounded-full bg-[rgba(253,250,247,0.82)] backdrop-blur-sm border-none cursor-pointer flex items-center justify-center text-[0.72rem] text-[rgba(30,30,30,0.38)] transition-all duration-[250ms] hover:scale-[1.18] hover:text-rouge hover:bg-white"
+                        onclick="toggleWish(this)">
+                    <i class="fa-regular fa-heart"></i>
+                </button>
+            </div>
+            <div class="text-center">
+                <p class="text-tag font-bold tracking-wide-5 uppercase text-[rgba(30,30,30,0.42)] mb-[5px]">
+                    Wall Hanging
+                </p>
+                <h3 class="font-cormorant text-[1.05rem] font-semibold text-charcoal mb-[5px]">Macrame Wall Hanging</h3>
+                <div class="flex items-center justify-center gap-[2px] mb-[6px]"><span class="text-[0.55rem] text-[#d4a843]">★</span><span class="text-[0.55rem] text-[#d4a843]">★</span><span class="text-[0.55rem] text-[#d4a843]">★</span><span class="text-[0.55rem] text-[#d4a843]">★</span><span class="text-[0.55rem] text-[#d4a843]">★</span><span class="text-[0.56rem] text-[rgba(30,30,30,0.42)] ml-1">(24)</span>
+                </div>
+                <p class="font-cormorant text-[1.05rem] font-semibold text-charcoal">
+                    <span>$5,200.00</span>
+                </p>
+            </div>
+        </div>
+                            <div class="product-card" style="transition-delay:110ms" data-price="5000.00" data-rating="5">
+            <div class="relative overflow-hidden bg-cream mb-[14px]" style="padding-bottom:120%">
+                <img class="card-img absolute inset-0 w-full h-full object-cover" src="http://localhost/storage/product/01KK1ENSEEK50T6ZVKB4CZ4AXN.png" alt="Planter Hanger"/>
+                <img class="card-img-hover absolute inset-0 w-full h-full object-cover" src="http://localhost/storage/product/01KK1ENSEEK50T6ZVKB4CZ4AXN.png" alt="Planter Hanger"/>
+                <div class="card-overlay absolute inset-0 bg-[rgba(30,30,30,0.07)] opacity-0 flex flex-col items-center justify-end pb-[18px] gap-2">
+                    <button class="btn-cart px-[22px] py-[10px] bg-white text-charcoal border-none cursor-pointer font-raleway text-xs2 font-bold tracking-wide-3 uppercase">Add to Cart</button>
+                    <button class="btn-view px-[18px] py-[6px] bg-transparent text-white border border-[rgba(255,255,255,0.45)] cursor-pointer font-raleway text-[0.56rem] font-bold tracking-wide-2 uppercase">Quick View</button>
+                </div>
+                <button class="wish-btn absolute top-3 right-3 z-[2] w-[32px] h-[32px] rounded-full bg-[rgba(253,250,247,0.82)] backdrop-blur-sm border-none cursor-pointer flex items-center justify-center text-[0.72rem] text-[rgba(30,30,30,0.38)] transition-all duration-[250ms] hover:scale-[1.18] hover:text-rouge hover:bg-white"
+                        onclick="toggleWish(this)">
+                    <i class="fa-regular fa-heart"></i>
+                </button>
+            </div>
+            <div class="text-center">
+                <p class="text-tag font-bold tracking-wide-5 uppercase text-[rgba(30,30,30,0.42)] mb-[5px]">
+                    Plant Hanger
+                </p>
+                <h3 class="font-cormorant text-[1.05rem] font-semibold text-charcoal mb-[5px]">Planter Hanger</h3>
+                <div class="flex items-center justify-center gap-[2px] mb-[6px]"><span class="text-[0.55rem] text-[#d4a843]">★</span><span class="text-[0.55rem] text-[#d4a843]">★</span><span class="text-[0.55rem] text-[#d4a843]">★</span><span class="text-[0.55rem] text-[#d4a843]">★</span><span class="text-[0.55rem] text-[#d4a843]">★</span><span class="text-[0.56rem] text-[rgba(30,30,30,0.42)] ml-1">(24)</span>
+                </div>
+                <p class="font-cormorant text-[1.05rem] font-semibold text-charcoal">
+                    <span>$5,000.00</span>
+                </p>
+            </div>
+        </div>
+                            <div class="product-card" style="transition-delay:165ms" data-price="2000.00" data-rating="5">
+            <div class="relative overflow-hidden bg-cream mb-[14px]" style="padding-bottom:120%">
+                <img class="card-img absolute inset-0 w-full h-full object-cover" src="http://localhost/storage/product/01KK1ENVSRAT4B39DRMXJRFQG7.webp" alt="Macrame Bags"/>
+                <img class="card-img-hover absolute inset-0 w-full h-full object-cover" src="http://localhost/storage/product/01KK1ENVSRAT4B39DRMXJRFQG7.webp" alt="Macrame Bags"/>
+                <div class="card-overlay absolute inset-0 bg-[rgba(30,30,30,0.07)] opacity-0 flex flex-col items-center justify-end pb-[18px] gap-2">
+                    <button class="btn-cart px-[22px] py-[10px] bg-white text-charcoal border-none cursor-pointer font-raleway text-xs2 font-bold tracking-wide-3 uppercase">Add to Cart</button>
+                    <button class="btn-view px-[18px] py-[6px] bg-transparent text-white border border-[rgba(255,255,255,0.45)] cursor-pointer font-raleway text-[0.56rem] font-bold tracking-wide-2 uppercase">Quick View</button>
+                </div>
+                <button class="wish-btn absolute top-3 right-3 z-[2] w-[32px] h-[32px] rounded-full bg-[rgba(253,250,247,0.82)] backdrop-blur-sm border-none cursor-pointer flex items-center justify-center text-[0.72rem] text-[rgba(30,30,30,0.38)] transition-all duration-[250ms] hover:scale-[1.18] hover:text-rouge hover:bg-white"
+                        onclick="toggleWish(this)">
+                    <i class="fa-regular fa-heart"></i>
+                </button>
+            </div>
+            <div class="text-center">
+                <p class="text-tag font-bold tracking-wide-5 uppercase text-[rgba(30,30,30,0.42)] mb-[5px]">
+                    Bags
+                </p>
+                <h3 class="font-cormorant text-[1.05rem] font-semibold text-charcoal mb-[5px]">Macrame Bags</h3>
+                <div class="flex items-center justify-center gap-[2px] mb-[6px]"><span class="text-[0.55rem] text-[#d4a843]">★</span><span class="text-[0.55rem] text-[#d4a843]">★</span><span class="text-[0.55rem] text-[#d4a843]">★</span><span class="text-[0.55rem] text-[#d4a843]">★</span><span class="text-[0.55rem] text-[#d4a843]">★</span><span class="text-[0.56rem] text-[rgba(30,30,30,0.42)] ml-1">(24)</span>
+                </div>
+                <p class="font-cormorant text-[1.05rem] font-semibold text-charcoal">
+                    <span>$2,000.00</span>
+                </p>
+            </div>
+        </div>
+                            <div class="product-card" style="transition-delay:220ms" data-price="200.00" data-rating="5">
+            <div class="relative overflow-hidden bg-cream mb-[14px]" style="padding-bottom:120%">
+                <img class="card-img absolute inset-0 w-full h-full object-cover" src="http://localhost/storage/product/01KK1EP2744AGFFPXVE0MNZ1AY.webp" alt="Wooden Beads"/>
+                <img class="card-img-hover absolute inset-0 w-full h-full object-cover" src="http://localhost/storage/product/01KK1EP2744AGFFPXVE0MNZ1AY.webp" alt="Wooden Beads"/>
+                <div class="card-overlay absolute inset-0 bg-[rgba(30,30,30,0.07)] opacity-0 flex flex-col items-center justify-end pb-[18px] gap-2">
+                    <button class="btn-cart px-[22px] py-[10px] bg-white text-charcoal border-none cursor-pointer font-raleway text-xs2 font-bold tracking-wide-3 uppercase">Add to Cart</button>
+                    <button class="btn-view px-[18px] py-[6px] bg-transparent text-white border border-[rgba(255,255,255,0.45)] cursor-pointer font-raleway text-[0.56rem] font-bold tracking-wide-2 uppercase">Quick View</button>
+                </div>
+                <button class="wish-btn absolute top-3 right-3 z-[2] w-[32px] h-[32px] rounded-full bg-[rgba(253,250,247,0.82)] backdrop-blur-sm border-none cursor-pointer flex items-center justify-center text-[0.72rem] text-[rgba(30,30,30,0.38)] transition-all duration-[250ms] hover:scale-[1.18] hover:text-rouge hover:bg-white"
+                        onclick="toggleWish(this)">
+                    <i class="fa-regular fa-heart"></i>
+                </button>
+            </div>
+            <div class="text-center">
+                <p class="text-tag font-bold tracking-wide-5 uppercase text-[rgba(30,30,30,0.42)] mb-[5px]">
+                    Wooden Beads
+                </p>
+                <h3 class="font-cormorant text-[1.05rem] font-semibold text-charcoal mb-[5px]">Wooden Beads</h3>
+                <div class="flex items-center justify-center gap-[2px] mb-[6px]"><span class="text-[0.55rem] text-[#d4a843]">★</span><span class="text-[0.55rem] text-[#d4a843]">★</span><span class="text-[0.55rem] text-[#d4a843]">★</span><span class="text-[0.55rem] text-[#d4a843]">★</span><span class="text-[0.55rem] text-[#d4a843]">★</span><span class="text-[0.56rem] text-[rgba(30,30,30,0.42)] ml-1">(24)</span>
+                </div>
+                <p class="font-cormorant text-[1.05rem] font-semibold text-charcoal">
+                    <span>$200.00</span>
+                </p>
+            </div>
+        </div>
+                            <div class="product-card" style="transition-delay:275ms" data-price="2323.00" data-rating="5">
+            <div class="relative overflow-hidden bg-cream mb-[14px]" style="padding-bottom:120%">
+                <img class="card-img absolute inset-0 w-full h-full object-cover" src="http://localhost/storage/product/01KKE7HG0A6ZCJ2CTHXHH20NNQ.jpg" alt="Wall hanging"/>
+                <img class="card-img-hover absolute inset-0 w-full h-full object-cover" src="http://localhost/storage/product/01KKE7HG0DVWV8KZ6XQMBM1KB1.png" alt="Wall hanging"/>
+                <div class="card-overlay absolute inset-0 bg-[rgba(30,30,30,0.07)] opacity-0 flex flex-col items-center justify-end pb-[18px] gap-2">
+                    <button class="btn-cart px-[22px] py-[10px] bg-white text-charcoal border-none cursor-pointer font-raleway text-xs2 font-bold tracking-wide-3 uppercase">Add to Cart</button>
+                    <button class="btn-view px-[18px] py-[6px] bg-transparent text-white border border-[rgba(255,255,255,0.45)] cursor-pointer font-raleway text-[0.56rem] font-bold tracking-wide-2 uppercase">Quick View</button>
+                </div>
+                <button class="wish-btn absolute top-3 right-3 z-[2] w-[32px] h-[32px] rounded-full bg-[rgba(253,250,247,0.82)] backdrop-blur-sm border-none cursor-pointer flex items-center justify-center text-[0.72rem] text-[rgba(30,30,30,0.38)] transition-all duration-[250ms] hover:scale-[1.18] hover:text-rouge hover:bg-white"
+                        onclick="toggleWish(this)">
+                    <i class="fa-regular fa-heart"></i>
+                </button>
+            </div>
+            <div class="text-center">
+                <p class="text-tag font-bold tracking-wide-5 uppercase text-[rgba(30,30,30,0.42)] mb-[5px]">
+                    Wall Hanging
+                </p>
+                <h3 class="font-cormorant text-[1.05rem] font-semibold text-charcoal mb-[5px]">Wall hanging</h3>
+                <div class="flex items-center justify-center gap-[2px] mb-[6px]"><span class="text-[0.55rem] text-[#d4a843]">★</span><span class="text-[0.55rem] text-[#d4a843]">★</span><span class="text-[0.55rem] text-[#d4a843]">★</span><span class="text-[0.55rem] text-[#d4a843]">★</span><span class="text-[0.55rem] text-[#d4a843]">★</span><span class="text-[0.56rem] text-[rgba(30,30,30,0.42)] ml-1">(24)</span>
+                </div>
+                <p class="font-cormorant text-[1.05rem] font-semibold text-charcoal">
+                    <span>$2,323.00</span>
+                </p>
+            </div>
+        </div>
+                    </div>
+
+        <div class="reveal flex justify-center mt-14">
+            <button class="btn-load relative overflow-hidden border-[1.5px] border-charcoal px-[52px] py-[14px] font-raleway text-xs5 font-bold tracking-wide-5 uppercase text-charcoal bg-transparent cursor-pointer transition-colors duration-[350ms]"
+                    onclick="handleLoadMore(this)">
+                <span>Load More</span>
+            </button>
+        </div>
+    </div>
+    
+                    <div class="tab-panel" id="panel-cotton-cord">
+            <div class="cat-heading flex items-end justify-between mb-9 gap-4" id="heading-cotton-cord">
+                <div>
+                    <p class="text-tag font-extrabold tracking-wide-7 uppercase text-rouge mb-2">✦ Cotton Cord</p>
+                    <h2 class="font-cormorant font-bold italic text-charcoal leading-none text-[clamp(2rem,3.5vw,3rem)]">Cotton Cord Collection</h2>
+                    <div class="cat-heading-line"></div>
+                </div>
+            </div>
+
+            <div class="products-grid grid grid-cols-shop-4 gap-7 transition-opacity duration-[350ms]" id="grid-cotton-cord">
+                                                            <div class="product-card" style="transition-delay:0ms" data-price="1300.00" data-rating="5">
+            <div class="relative overflow-hidden bg-cream mb-[14px]" style="padding-bottom:120%">
+                <img class="card-img absolute inset-0 w-full h-full object-cover" src="http://localhost/storage/product/01KK1EMJZ7MTR2E7SYVYKQP50R.jpg" alt="Macrame Twisted Cotton Cord"/>
+                <img class="card-img-hover absolute inset-0 w-full h-full object-cover" src="http://localhost/storage/product/01KK1EMJZ7MTR2E7SYVYKQP50R.jpg" alt="Macrame Twisted Cotton Cord"/>
+                <div class="card-overlay absolute inset-0 bg-[rgba(30,30,30,0.07)] opacity-0 flex flex-col items-center justify-end pb-[18px] gap-2">
+                    <button class="btn-cart px-[22px] py-[10px] bg-white text-charcoal border-none cursor-pointer font-raleway text-xs2 font-bold tracking-wide-3 uppercase">Add to Cart</button>
+                    <button class="btn-view px-[18px] py-[6px] bg-transparent text-white border border-[rgba(255,255,255,0.45)] cursor-pointer font-raleway text-[0.56rem] font-bold tracking-wide-2 uppercase">Quick View</button>
+                </div>
+                <button class="wish-btn absolute top-3 right-3 z-[2] w-[32px] h-[32px] rounded-full bg-[rgba(253,250,247,0.82)] backdrop-blur-sm border-none cursor-pointer flex items-center justify-center text-[0.72rem] text-[rgba(30,30,30,0.38)] transition-all duration-[250ms] hover:scale-[1.18] hover:text-rouge hover:bg-white"
+                        onclick="toggleWish(this)">
+                    <i class="fa-regular fa-heart"></i>
+                </button>
+            </div>
+            <div class="text-center">
+                <p class="text-tag font-bold tracking-wide-5 uppercase text-[rgba(30,30,30,0.42)] mb-[5px]">
+                    Cotton Cord
+                </p>
+                <h3 class="font-cormorant text-[1.05rem] font-semibold text-charcoal mb-[5px]">Macrame Twisted Cotton Cord</h3>
+                <div class="flex items-center justify-center gap-[2px] mb-[6px]"><span class="text-[0.55rem] text-[#d4a843]">★</span><span class="text-[0.55rem] text-[#d4a843]">★</span><span class="text-[0.55rem] text-[#d4a843]">★</span><span class="text-[0.55rem] text-[#d4a843]">★</span><span class="text-[0.55rem] text-[#d4a843]">★</span><span class="text-[0.56rem] text-[rgba(30,30,30,0.42)] ml-1">(24)</span>
+                </div>
+                <p class="font-cormorant text-[1.05rem] font-semibold text-charcoal">
+                    <span>$1,300.00</span>
+                </p>
+            </div>
+        </div>
+                                                </div>
+        </div>
+                            <div class="tab-panel" id="panel-wall-hanging">
+            <div class="cat-heading flex items-end justify-between mb-9 gap-4" id="heading-wall-hanging">
+                <div>
+                    <p class="text-tag font-extrabold tracking-wide-7 uppercase text-rouge mb-2">✦ Wall Hanging</p>
+                    <h2 class="font-cormorant font-bold italic text-charcoal leading-none text-[clamp(2rem,3.5vw,3rem)]">Wall Hanging Collection</h2>
+                    <div class="cat-heading-line"></div>
+                </div>
+            </div>
+
+            <div class="products-grid grid grid-cols-shop-4 gap-7 transition-opacity duration-[350ms]" id="grid-wall-hanging">
+                                                            <div class="product-card" style="transition-delay:0ms" data-price="5200.00" data-rating="5">
+            <div class="relative overflow-hidden bg-cream mb-[14px]" style="padding-bottom:120%">
+                <img class="card-img absolute inset-0 w-full h-full object-cover" src="http://localhost/storage/product/01KK1ENR3R8SWX6V9KR9XNA473.avif" alt="Macrame Wall Hanging"/>
+                <img class="card-img-hover absolute inset-0 w-full h-full object-cover" src="http://localhost/storage/product/01KK1ENR3R8SWX6V9KR9XNA473.avif" alt="Macrame Wall Hanging"/>
+                <div class="card-overlay absolute inset-0 bg-[rgba(30,30,30,0.07)] opacity-0 flex flex-col items-center justify-end pb-[18px] gap-2">
+                    <button class="btn-cart px-[22px] py-[10px] bg-white text-charcoal border-none cursor-pointer font-raleway text-xs2 font-bold tracking-wide-3 uppercase">Add to Cart</button>
+                    <button class="btn-view px-[18px] py-[6px] bg-transparent text-white border border-[rgba(255,255,255,0.45)] cursor-pointer font-raleway text-[0.56rem] font-bold tracking-wide-2 uppercase">Quick View</button>
+                </div>
+                <button class="wish-btn absolute top-3 right-3 z-[2] w-[32px] h-[32px] rounded-full bg-[rgba(253,250,247,0.82)] backdrop-blur-sm border-none cursor-pointer flex items-center justify-center text-[0.72rem] text-[rgba(30,30,30,0.38)] transition-all duration-[250ms] hover:scale-[1.18] hover:text-rouge hover:bg-white"
+                        onclick="toggleWish(this)">
+                    <i class="fa-regular fa-heart"></i>
+                </button>
+            </div>
+            <div class="text-center">
+                <p class="text-tag font-bold tracking-wide-5 uppercase text-[rgba(30,30,30,0.42)] mb-[5px]">
+                    Wall Hanging
+                </p>
+                <h3 class="font-cormorant text-[1.05rem] font-semibold text-charcoal mb-[5px]">Macrame Wall Hanging</h3>
+                <div class="flex items-center justify-center gap-[2px] mb-[6px]"><span class="text-[0.55rem] text-[#d4a843]">★</span><span class="text-[0.55rem] text-[#d4a843]">★</span><span class="text-[0.55rem] text-[#d4a843]">★</span><span class="text-[0.55rem] text-[#d4a843]">★</span><span class="text-[0.55rem] text-[#d4a843]">★</span><span class="text-[0.56rem] text-[rgba(30,30,30,0.42)] ml-1">(24)</span>
+                </div>
+                <p class="font-cormorant text-[1.05rem] font-semibold text-charcoal">
+                    <span>$5,200.00</span>
+                </p>
+            </div>
+        </div>
+                                            <div class="product-card" style="transition-delay:55ms" data-price="2323.00" data-rating="5">
+            <div class="relative overflow-hidden bg-cream mb-[14px]" style="padding-bottom:120%">
+                <img class="card-img absolute inset-0 w-full h-full object-cover" src="http://localhost/storage/product/01KKE7HG0A6ZCJ2CTHXHH20NNQ.jpg" alt="Wall hanging"/>
+                <img class="card-img-hover absolute inset-0 w-full h-full object-cover" src="http://localhost/storage/product/01KKE7HG0DVWV8KZ6XQMBM1KB1.png" alt="Wall hanging"/>
+                <div class="card-overlay absolute inset-0 bg-[rgba(30,30,30,0.07)] opacity-0 flex flex-col items-center justify-end pb-[18px] gap-2">
+                    <button class="btn-cart px-[22px] py-[10px] bg-white text-charcoal border-none cursor-pointer font-raleway text-xs2 font-bold tracking-wide-3 uppercase">Add to Cart</button>
+                    <button class="btn-view px-[18px] py-[6px] bg-transparent text-white border border-[rgba(255,255,255,0.45)] cursor-pointer font-raleway text-[0.56rem] font-bold tracking-wide-2 uppercase">Quick View</button>
+                </div>
+                <button class="wish-btn absolute top-3 right-3 z-[2] w-[32px] h-[32px] rounded-full bg-[rgba(253,250,247,0.82)] backdrop-blur-sm border-none cursor-pointer flex items-center justify-center text-[0.72rem] text-[rgba(30,30,30,0.38)] transition-all duration-[250ms] hover:scale-[1.18] hover:text-rouge hover:bg-white"
+                        onclick="toggleWish(this)">
+                    <i class="fa-regular fa-heart"></i>
+                </button>
+            </div>
+            <div class="text-center">
+                <p class="text-tag font-bold tracking-wide-5 uppercase text-[rgba(30,30,30,0.42)] mb-[5px]">
+                    Wall Hanging
+                </p>
+                <h3 class="font-cormorant text-[1.05rem] font-semibold text-charcoal mb-[5px]">Wall hanging</h3>
+                <div class="flex items-center justify-center gap-[2px] mb-[6px]"><span class="text-[0.55rem] text-[#d4a843]">★</span><span class="text-[0.55rem] text-[#d4a843]">★</span><span class="text-[0.55rem] text-[#d4a843]">★</span><span class="text-[0.55rem] text-[#d4a843]">★</span><span class="text-[0.55rem] text-[#d4a843]">★</span><span class="text-[0.56rem] text-[rgba(30,30,30,0.42)] ml-1">(24)</span>
+                </div>
+                <p class="font-cormorant text-[1.05rem] font-semibold text-charcoal">
+                    <span>$2,323.00</span>
+                </p>
+            </div>
+        </div>
+                                                </div>
+        </div>
+                            <div class="tab-panel" id="panel-plant-hanger">
+            <div class="cat-heading flex items-end justify-between mb-9 gap-4" id="heading-plant-hanger">
+                <div>
+                    <p class="text-tag font-extrabold tracking-wide-7 uppercase text-rouge mb-2">✦ Plant Hanger</p>
+                    <h2 class="font-cormorant font-bold italic text-charcoal leading-none text-[clamp(2rem,3.5vw,3rem)]">Plant Hanger Collection</h2>
+                    <div class="cat-heading-line"></div>
+                </div>
+            </div>
+
+            <div class="products-grid grid grid-cols-shop-4 gap-7 transition-opacity duration-[350ms]" id="grid-plant-hanger">
+                                                            <div class="product-card" style="transition-delay:0ms" data-price="5000.00" data-rating="5">
+            <div class="relative overflow-hidden bg-cream mb-[14px]" style="padding-bottom:120%">
+                <img class="card-img absolute inset-0 w-full h-full object-cover" src="http://localhost/storage/product/01KK1ENSEEK50T6ZVKB4CZ4AXN.png" alt="Planter Hanger"/>
+                <img class="card-img-hover absolute inset-0 w-full h-full object-cover" src="http://localhost/storage/product/01KK1ENSEEK50T6ZVKB4CZ4AXN.png" alt="Planter Hanger"/>
+                <div class="card-overlay absolute inset-0 bg-[rgba(30,30,30,0.07)] opacity-0 flex flex-col items-center justify-end pb-[18px] gap-2">
+                    <button class="btn-cart px-[22px] py-[10px] bg-white text-charcoal border-none cursor-pointer font-raleway text-xs2 font-bold tracking-wide-3 uppercase">Add to Cart</button>
+                    <button class="btn-view px-[18px] py-[6px] bg-transparent text-white border border-[rgba(255,255,255,0.45)] cursor-pointer font-raleway text-[0.56rem] font-bold tracking-wide-2 uppercase">Quick View</button>
+                </div>
+                <button class="wish-btn absolute top-3 right-3 z-[2] w-[32px] h-[32px] rounded-full bg-[rgba(253,250,247,0.82)] backdrop-blur-sm border-none cursor-pointer flex items-center justify-center text-[0.72rem] text-[rgba(30,30,30,0.38)] transition-all duration-[250ms] hover:scale-[1.18] hover:text-rouge hover:bg-white"
+                        onclick="toggleWish(this)">
+                    <i class="fa-regular fa-heart"></i>
+                </button>
+            </div>
+            <div class="text-center">
+                <p class="text-tag font-bold tracking-wide-5 uppercase text-[rgba(30,30,30,0.42)] mb-[5px]">
+                    Plant Hanger
+                </p>
+                <h3 class="font-cormorant text-[1.05rem] font-semibold text-charcoal mb-[5px]">Planter Hanger</h3>
+                <div class="flex items-center justify-center gap-[2px] mb-[6px]"><span class="text-[0.55rem] text-[#d4a843]">★</span><span class="text-[0.55rem] text-[#d4a843]">★</span><span class="text-[0.55rem] text-[#d4a843]">★</span><span class="text-[0.55rem] text-[#d4a843]">★</span><span class="text-[0.55rem] text-[#d4a843]">★</span><span class="text-[0.56rem] text-[rgba(30,30,30,0.42)] ml-1">(24)</span>
+                </div>
+                <p class="font-cormorant text-[1.05rem] font-semibold text-charcoal">
+                    <span>$5,000.00</span>
+                </p>
+            </div>
+        </div>
+                                                </div>
+        </div>
+                            <div class="tab-panel" id="panel-bags">
+            <div class="cat-heading flex items-end justify-between mb-9 gap-4" id="heading-bags">
+                <div>
+                    <p class="text-tag font-extrabold tracking-wide-7 uppercase text-rouge mb-2">✦ Bags</p>
+                    <h2 class="font-cormorant font-bold italic text-charcoal leading-none text-[clamp(2rem,3.5vw,3rem)]">Bags Collection</h2>
+                    <div class="cat-heading-line"></div>
+                </div>
+            </div>
+
+            <div class="products-grid grid grid-cols-shop-4 gap-7 transition-opacity duration-[350ms]" id="grid-bags">
+                                                            <div class="product-card" style="transition-delay:0ms" data-price="2000.00" data-rating="5">
+            <div class="relative overflow-hidden bg-cream mb-[14px]" style="padding-bottom:120%">
+                <img class="card-img absolute inset-0 w-full h-full object-cover" src="http://localhost/storage/product/01KK1ENVSRAT4B39DRMXJRFQG7.webp" alt="Macrame Bags"/>
+                <img class="card-img-hover absolute inset-0 w-full h-full object-cover" src="http://localhost/storage/product/01KK1ENVSRAT4B39DRMXJRFQG7.webp" alt="Macrame Bags"/>
+                <div class="card-overlay absolute inset-0 bg-[rgba(30,30,30,0.07)] opacity-0 flex flex-col items-center justify-end pb-[18px] gap-2">
+                    <button class="btn-cart px-[22px] py-[10px] bg-white text-charcoal border-none cursor-pointer font-raleway text-xs2 font-bold tracking-wide-3 uppercase">Add to Cart</button>
+                    <button class="btn-view px-[18px] py-[6px] bg-transparent text-white border border-[rgba(255,255,255,0.45)] cursor-pointer font-raleway text-[0.56rem] font-bold tracking-wide-2 uppercase">Quick View</button>
+                </div>
+                <button class="wish-btn absolute top-3 right-3 z-[2] w-[32px] h-[32px] rounded-full bg-[rgba(253,250,247,0.82)] backdrop-blur-sm border-none cursor-pointer flex items-center justify-center text-[0.72rem] text-[rgba(30,30,30,0.38)] transition-all duration-[250ms] hover:scale-[1.18] hover:text-rouge hover:bg-white"
+                        onclick="toggleWish(this)">
+                    <i class="fa-regular fa-heart"></i>
+                </button>
+            </div>
+            <div class="text-center">
+                <p class="text-tag font-bold tracking-wide-5 uppercase text-[rgba(30,30,30,0.42)] mb-[5px]">
+                    Bags
+                </p>
+                <h3 class="font-cormorant text-[1.05rem] font-semibold text-charcoal mb-[5px]">Macrame Bags</h3>
+                <div class="flex items-center justify-center gap-[2px] mb-[6px]"><span class="text-[0.55rem] text-[#d4a843]">★</span><span class="text-[0.55rem] text-[#d4a843]">★</span><span class="text-[0.55rem] text-[#d4a843]">★</span><span class="text-[0.55rem] text-[#d4a843]">★</span><span class="text-[0.55rem] text-[#d4a843]">★</span><span class="text-[0.56rem] text-[rgba(30,30,30,0.42)] ml-1">(24)</span>
+                </div>
+                <p class="font-cormorant text-[1.05rem] font-semibold text-charcoal">
+                    <span>$2,000.00</span>
+                </p>
+            </div>
+        </div>
+                                                </div>
+        </div>
+                            <div class="tab-panel" id="panel-wooden-beads">
+            <div class="cat-heading flex items-end justify-between mb-9 gap-4" id="heading-wooden-beads">
+                <div>
+                    <p class="text-tag font-extrabold tracking-wide-7 uppercase text-rouge mb-2">✦ Wooden Beads</p>
+                    <h2 class="font-cormorant font-bold italic text-charcoal leading-none text-[clamp(2rem,3.5vw,3rem)]">Wooden Beads Collection</h2>
+                    <div class="cat-heading-line"></div>
+                </div>
+            </div>
+
+            <div class="products-grid grid grid-cols-shop-4 gap-7 transition-opacity duration-[350ms]" id="grid-wooden-beads">
+                                                            <div class="product-card" style="transition-delay:0ms" data-price="200.00" data-rating="5">
+            <div class="relative overflow-hidden bg-cream mb-[14px]" style="padding-bottom:120%">
+                <img class="card-img absolute inset-0 w-full h-full object-cover" src="http://localhost/storage/product/01KK1EP2744AGFFPXVE0MNZ1AY.webp" alt="Wooden Beads"/>
+                <img class="card-img-hover absolute inset-0 w-full h-full object-cover" src="http://localhost/storage/product/01KK1EP2744AGFFPXVE0MNZ1AY.webp" alt="Wooden Beads"/>
+                <div class="card-overlay absolute inset-0 bg-[rgba(30,30,30,0.07)] opacity-0 flex flex-col items-center justify-end pb-[18px] gap-2">
+                    <button class="btn-cart px-[22px] py-[10px] bg-white text-charcoal border-none cursor-pointer font-raleway text-xs2 font-bold tracking-wide-3 uppercase">Add to Cart</button>
+                    <button class="btn-view px-[18px] py-[6px] bg-transparent text-white border border-[rgba(255,255,255,0.45)] cursor-pointer font-raleway text-[0.56rem] font-bold tracking-wide-2 uppercase">Quick View</button>
+                </div>
+                <button class="wish-btn absolute top-3 right-3 z-[2] w-[32px] h-[32px] rounded-full bg-[rgba(253,250,247,0.82)] backdrop-blur-sm border-none cursor-pointer flex items-center justify-center text-[0.72rem] text-[rgba(30,30,30,0.38)] transition-all duration-[250ms] hover:scale-[1.18] hover:text-rouge hover:bg-white"
+                        onclick="toggleWish(this)">
+                    <i class="fa-regular fa-heart"></i>
+                </button>
+            </div>
+            <div class="text-center">
+                <p class="text-tag font-bold tracking-wide-5 uppercase text-[rgba(30,30,30,0.42)] mb-[5px]">
+                    Wooden Beads
+                </p>
+                <h3 class="font-cormorant text-[1.05rem] font-semibold text-charcoal mb-[5px]">Wooden Beads</h3>
+                <div class="flex items-center justify-center gap-[2px] mb-[6px]"><span class="text-[0.55rem] text-[#d4a843]">★</span><span class="text-[0.55rem] text-[#d4a843]">★</span><span class="text-[0.55rem] text-[#d4a843]">★</span><span class="text-[0.55rem] text-[#d4a843]">★</span><span class="text-[0.55rem] text-[#d4a843]">★</span><span class="text-[0.56rem] text-[rgba(30,30,30,0.42)] ml-1">(24)</span>
+                </div>
+                <p class="font-cormorant text-[1.05rem] font-semibold text-charcoal">
+                    <span>$200.00</span>
+                </p>
+            </div>
+        </div>
+                                                </div>
+        </div>
+                                                                                                                                                            </div>
+
+
+<footer class="bg-[#111110] text-[#FAF6F1] relative overflow-hidden">
+
+    <!-- Decorative circles -->
+    <div class="absolute -top-20 -right-20 w-[300px] h-[300px] rounded-full border border-[rgba(217,79,79,0.08)] pointer-events-none"></div>
+    <div class="absolute -top-10 -right-10 w-[180px] h-[180px] rounded-full border border-[rgba(217,79,79,0.12)] pointer-events-none"></div>
+    <div class="absolute bottom-60 left-[-60px] w-[220px] h-[220px] rounded-full border border-[rgba(250,246,241,0.04)] pointer-events-none"></div>
+
+    <!-- Top gradient bar -->
+    <div class="h-[3px] bg-gradient-to-r from-[#d94f4f] via-[#E8C9B8] via-[#C9B49A] to-[#d94f4f]"></div>
+
+    <div class="max-w-7xl mx-auto px-8 py-16 md:px-8 lg:px-8">
+        <!-- Header section -->
+        <div class="text-center mb-14">
+            <div class="font-['Cormorant_Garamond'] serif text-[3.5rem] md:text-6xl font-bold tracking-tight mb-3">
+                Sara's<span class="text-[#d94f4f]">.</span>
+            </div>
+            <p style="font-family: Raleway, sans-serif;" class="text-[rgba(250,246,241,0.4)] text-[0.6rem] font-bold tracking-[0.35em] uppercase mb-5">
+                Handcrafted with love • Macrame &amp; Cotton Arts
+            </p>
+            <div style="display:flex; justify-content:center; gap:8px; margin-bottom:0;">
+                <span class="footer-dot" style="width:6px; height:6px; border-radius:50%; background:#d94f4f; display:inline-block;"></span>
+                <span class="footer-dot" style="width:6px; height:6px; border-radius:50%; background:#C9B49A; display:inline-block;"></span>
+                <span class="footer-dot" style="width:6px; height:6px; border-radius:50%; background:#E8C9B8; display:inline-block;"></span>
+            </div>
+        </div>
+
+        <!-- Divider -->
+        <div class="mb-14"></div>
+
+        <!-- Main footer grid -->
+        <div class="grid gap-10 grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
+            <!-- Quick Links -->
+            <div class="transition-all duration-300 delay-100">
+                <p style="font-family: Raleway, sans-serif;" class="text-[0.55rem] font-bold tracking-[0.35em] uppercase text-[#d94f4f] mb-5">Quick Links</p>
+                <div class="flex flex-col gap-3">
+                    <a href="http://localhost" style="font-family: Raleway, sans-serif;" class="text-[rgba(250,246,241,0.45)] text-[0.8rem] md:text-sm hover:text-[#FAF6F1] transition-all duration-300 no-underline relative group">
+                        Home
+                        <span class="absolute left-0 bottom-[-2px] w-0 h-[2px] bg-[#d94f4f] transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="http://localhost/category" style="font-family: Raleway, sans-serif;" class="text-[rgba(250,246,241,0.45)] text-[0.8rem] md:text-sm hover:text-[#FAF6F1] transition-all duration-300 no-underline relative group">
+                        Shop Collection
+                        <span class="absolute left-0 bottom-[-2px] w-0 h-[2px] bg-[#d94f4f] transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="#" style="font-family: Raleway, sans-serif;" class="text-[rgba(250,246,241,0.45)] text-[0.8rem] md:text-sm hover:text-[#FAF6F1] transition-all duration-300 no-underline relative group">
+                        Our Story
+                        <span class="absolute left-0 bottom-[-2px] w-0 h-[2px] bg-[#d94f4f] transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+
+
+
+
+                    <a href="#" style="font-family: Raleway, sans-serif;" class="text-[rgba(250,246,241,0.45)] text-[0.8rem] md:text-sm hover:text-[#FAF6F1] transition-all duration-300 no-underline relative group">
+                        Contact Us
+                        <span class="absolute left-0 bottom-[-2px] w-0 h-[2px] bg-[#d94f4f] transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Categories -->
+            <div class="transition-all duration-300 delay-200">
+                <p style="font-family: Raleway, sans-serif;" class="text-[0.55rem] font-bold tracking-[0.35em] uppercase text-[#d94f4f] mb-5">Categories</p>
+                <div class="flex flex-col gap-3">
+                    <a href="#" style="font-family: Raleway, sans-serif;" class="text-[rgba(250,246,241,0.45)] text-[0.8rem] md:text-sm hover:text-[#FAF6F1] transition-all duration-300 no-underline relative group">
+                        Wall Hangings
+                        <span class="absolute left-0 bottom-[-2px] w-0 h-[2px] bg-[#d94f4f] transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="#" style="font-family: Raleway, sans-serif;" class="text-[rgba(250,246,241,0.45)] text-[0.8rem] md:text-sm hover:text-[#FAF6F1] transition-all duration-300 no-underline relative group">
+                        Plant Hangers
+                        <span class="absolute left-0 bottom-[-2px] w-0 h-[2px] bg-[#d94f4f] transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="#" style="font-family: Raleway, sans-serif;" class="text-[rgba(250,246,241,0.45)] text-[0.8rem] md:text-sm hover:text-[#FAF6F1] transition-all duration-300 no-underline relative group">
+                        Cotton Cords
+                        <span class="absolute left-0 bottom-[-2px] w-0 h-[2px] bg-[#d94f4f] transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="#" style="font-family: Raleway, sans-serif;" class="text-[rgba(250,246,241,0.45)] text-[0.8rem] md:text-sm hover:text-[#FAF6F1] transition-all duration-300 no-underline relative group">
+                        Boho Decor
+                        <span class="absolute left-0 bottom-[-2px] w-0 h-[2px] bg-[#d94f4f] transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="#" style="font-family: Raleway, sans-serif;" class="text-[rgba(250,246,241,0.45)] text-[0.8rem] md:text-sm hover:text-[#FAF6F1] transition-all duration-300 no-underline relative group">
+                        Gift Sets
+                        <span class="absolute left-0 bottom-[-2px] w-0 h-[2px] bg-[#d94f4f] transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Newsletter -->
+            <div class="transition-all duration-300 delay-300">
+                <p style="font-family: Raleway, sans-serif;" class="text-[0.55rem] font-bold tracking-[0.35em] uppercase text-[#d94f4f] mb-5">Stay in Touch</p>
+                <p style="font-family: Raleway, sans-serif;" class="text-[rgba(250,246,241,0.4)] text-[0.8rem] md:text-sm leading-relaxed mb-6">Get the latest arrivals, exclusive offers and artisan stories straight to your inbox.</p>
+                <div class="flex flex-col gap-2.5">
+                    <input type="email" placeholder="Your email address"
+                           style="font-family: Raleway, sans-serif;"
+                           class="px-4 py-3 text-[0.7rem] md:text-xs tracking-widest rounded-none bg-transparent border border-[rgba(250,246,241,0.2)] text-[#FAF6F1] placeholder:text-[rgba(250,246,241,0.3)] focus:outline-none focus:border-[#d94f4f] transition-colors"/>
+                    <button onclick="handleSubscribe(this)"
+                            style="font-family: Raleway, sans-serif;"
+                            class="bg-[#d94f4f] text-[#FAF6F1] border-none px-6 py-3 text-[0.6rem] md:text-xs font-bold tracking-widest uppercase cursor-pointer transition-colors duration-300 relative overflow-hidden hover:bg-[#c04040]">
+                        Subscribe &nbsp;<i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+                <p id="subMsg" style="font-family: Raleway, sans-serif; display:none;" class="text-[#C9B49A] text-[0.65rem] md:text-xs tracking-widest mt-2.5">✓ Thank you for subscribing!</p>
+            </div>
+
+            <!-- Contact -->
+            <div class="transition-all duration-300 delay-400">
+                <p style="font-family: Raleway, sans-serif;" class="text-[0.55rem] font-bold tracking-[0.35em] uppercase text-[#d94f4f] mb-5">Contact</p>
+                <div class="flex flex-col gap-3.5">
+                    <div class="flex items-start gap-3">
+                        <i class="fas fa-map-marker-alt text-[#d94f4f] text-[0.75rem] md:text-xs mt-1 shrink-0"></i>
+                        <span style="font-family: Raleway, sans-serif;" class="text-[rgba(250,246,241,0.45)] text-[0.75rem] md:text-xs leading-relaxed">123 Artisan Lane, Craft District, City 10001</span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <i class="fas fa-envelope text-[#d94f4f] text-[0.75rem] md:text-xs shrink-0"></i>
+                        <a href="mailto:hello@sarascreations.com"
+                           style="font-family: Raleway, sans-serif;"
+                           class="text-[rgba(250,246,241,0.45)] text-[0.75rem] md:text-xs no-underline transition-colors duration-300 hover:text-[rgba(250,246,241,0.85)] relative group">
+                            hello@sarascreations.com
+                            <span class="absolute left-0 bottom-[-2px] w-0 h-[2px] bg-[#d94f4f] transition-all duration-300 group-hover:w-full"></span>
+                        </a>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <i class="fas fa-phone text-[#d94f4f] text-[0.75rem] md:text-xs shrink-0"></i>
+                        <span style="font-family: Raleway, sans-serif;" class="text-[rgba(250,246,241,0.45)] text-[0.75rem] md:text-xs">+1 (555) 234-5678</span>
+                    </div>
+                </div>
+
+                <!-- Social Icons -->
+                <div class="flex gap-2.5 mt-7">
+                    <a href="#" class="w-8 h-8 flex items-center justify-center text-[rgba(250,246,241,0.45)] hover:text-[#FAF6F1] border border-[rgba(250,246,241,0.2)] hover:border-[#d94f4f] transition-all duration-300 no-underline rounded-sm" title="Instagram"><i class="fab fa-instagram text-[0.75rem] md:text-sm"></i></a>
+                    <a href="#" class="w-8 h-8 flex items-center justify-center text-[rgba(250,246,241,0.45)] hover:text-[#FAF6F1] border border-[rgba(250,246,241,0.2)] hover:border-[#d94f4f] transition-all duration-300 no-underline rounded-sm" title="Facebook"><i class="fab fa-facebook-f text-[0.75rem] md:text-sm"></i></a>
+                    <a href="#" class="w-8 h-8 flex items-center justify-center text-[rgba(250,246,241,0.45)] hover:text-[#FAF6F1] border border-[rgba(250,246,241,0.2)] hover:border-[#d94f4f] transition-all duration-300 no-underline rounded-sm" title="Pinterest"><i class="fab fa-pinterest-p text-[0.75rem] md:text-sm"></i></a>
+                    <a href="#" class="w-8 h-8 flex items-center justify-center text-[rgba(250,246,241,0.45)] hover:text-[#FAF6F1] border border-[rgba(250,246,241,0.2)] hover:border-[#d94f4f] transition-all duration-300 no-underline rounded-sm" title="YouTube"><i class="fab fa-youtube text-[0.75rem] md:text-sm"></i></a>
+                    <a href="#" class="w-8 h-8 flex items-center justify-center text-[rgba(250,246,241,0.45)] hover:text-[#FAF6F1] border border-[rgba(250,246,241,0.2)] hover:border-[#d94f4f] transition-all duration-300 no-underline rounded-sm" title="Twitter"><i class="fab fa-twitter text-[0.75rem] md:text-sm"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom divider -->
+        <div class="h-px bg-[rgba(250,246,241,0.08)] my-12"></div>
+
+        <!-- Copyright section -->
+        <div class="flex flex-wrap items-center justify-between gap-4 transition-all duration-300 delay-500">
+            <p style="font-family: Raleway, sans-serif;" class="text-[rgba(250,246,241,0.25)] text-[0.6rem] font-semibold tracking-widest uppercase">
+                © 2026 Sara's Creations. All Rights Reserved.
+            </p>
+            <div class="flex gap-5">
+                <a href="#" style="font-family: Raleway, sans-serif;" class="text-[rgba(250,246,241,0.25)] text-[0.6rem] font-semibold tracking-widest uppercase no-underline transition-all duration-300 relative group hover:text-[#FAF6F1]">
+                    Privacy
+                    <span class="absolute left-0 bottom-[-2px] w-0 h-[2px] bg-[#d94f4f] transition-all duration-300 group-hover:w-full"></span>
+                </a>
+                <a href="#" style="font-family: Raleway, sans-serif;" class="text-[rgba(250,246,241,0.25)] text-[0.6rem] font-semibold tracking-widest uppercase no-underline transition-all duration-300 relative group hover:text-[#FAF6F1]">
+                    Terms
+                    <span class="absolute left-0 bottom-[-2px] w-0 h-[2px] bg-[#d94f4f] transition-all duration-300 group-hover:w-full"></span>
+                </a>
+                <a href="#" style="font-family: Raleway, sans-serif;" class="text-[rgba(250,246,241,0.25)] text-[0.6rem] font-semibold tracking-widest uppercase no-underline transition-all duration-300 relative group hover:text-[#FAF6F1]">
+                    Cookies
+                    <span class="absolute left-0 bottom-[-2px] w-0 h-[2px] bg-[#d94f4f] transition-all duration-300 group-hover:w-full"></span>
+                </a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<button id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="display:none; position:fixed; bottom:24px; right:24px; background:#1e1e1e; color:#FAF6F1; width:44px; height:44px; border:none; cursor:pointer; z-index:50; font-size:1rem; box-shadow:0 4px 20px rgba(0,0,0,0.3);">
+    <i class="fa fa-angle-up"></i>
+</button>
+
+<script src="http://localhost/js/home.js"></script>
+
+    <script>
+        window.CATEGORY_DATA = [{"key":"cotton-cord","label":"Cotton Cord","count":1},{"key":"wall-hanging","label":"Wall Hanging","count":2},{"key":"plant-hanger","label":"Plant Hanger","count":1},{"key":"bags","label":"Bags","count":1},{"key":"wooden-beads","label":"Wooden Beads","count":1},{"key":"wooden-rings","label":"Wooden Rings","count":0},{"key":"steel-rings","label":"Steel Rings","count":0},{"key":"wooden-dowels","label":"Wooden Dowels","count":0},{"key":"wooden-shelf","label":"Wooden Shelf","count":0},{"key":"bookmarks","label":"Bookmarks","count":0},{"key":"bracelets","label":"Bracelets","count":0},{"key":"christmas","label":"Christmas","count":0},{"key":"circles","label":"Circles","count":0},{"key":"flowers","label":"Flowers","count":0},{"key":"keychains","label":"Keychains","count":0},{"key":"lighting","label":"Lighting","count":0},{"key":"patterns","label":"Patterns","count":0}];
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/js/all.min.js" defer></script>
+    <script src="http://localhost/js/category.js"></script>
+</body>
+</html>
+

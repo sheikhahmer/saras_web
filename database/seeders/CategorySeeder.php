@@ -15,12 +15,14 @@ class CategorySeeder extends Seeder
     {
         $categories = [
             'Cotton Cord',
+            'Wall Hanging',
+            'Plant Hanger',
+            'Bags',
             'Wooden Beads',
             'Wooden Rings',
             'Steel Rings',
             'Wooden Dowels',
             'Wooden Shelf',
-            'Bags',
             'Bookmarks',
             'Bracelets',
             'Christmas',
@@ -29,8 +31,6 @@ class CategorySeeder extends Seeder
             'Keychains',
             'Lighting',
             'Patterns',
-            'Plant Hanger',
-            'Wall Hanging',
         ];
 
         foreach ($categories as $category) {

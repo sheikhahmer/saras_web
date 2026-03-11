@@ -75,7 +75,7 @@
                 {{-- First Card --}}
                 @if(isset($bannerProducts['Cotton Cord']))
                     <div class="banner-card reveal-left relative overflow-hidden w-full h-[380px]" data-md-width="66.666%">
-                        <div class="bg-img" style="background-image:url('{{ Storage::url($bannerProducts['Cotton Cord']->image) }}')"></div>
+                        <div class="bg-img" style="background-image:url('{{ Storage::url($bannerProducts['Cotton Cord']->image[0]) }}')"></div>
                         <div class="absolute inset-0 flex items-start p-8 z-10">
                             <div>
                                 <h3 class="font-cormorant font-semibold leading-[1.25] text-[#2a2a2a] mb-5" style="font-size:clamp(1.6rem,2.5vw,2.2rem)">
@@ -90,7 +90,7 @@
                 {{-- Second Card --}}
                 @if(isset($bannerProducts['Wooden Beads']))
                     <div class="banner-card reveal relative overflow-hidden w-full h-[380px] bg-[#F5EDE6]" data-md-width="33.333%">
-                        <div class="bg-img" style="background-image:url('{{ Storage::url($bannerProducts['Wooden Beads']->image) }}')"></div>
+                        <div class="bg-img" style="background-image:url('{{ Storage::url($bannerProducts['Wooden Beads']->image[0]) }}')"></div>
                         <div class="absolute inset-0 flex items-center p-8 z-10">
                             <div>
                                 <p class="text-[0.55rem] font-bold tracking-wide-3 uppercase text-rouge mb-2">{{ $bannerProducts['Wooden Beads']->category->name }}</p>
@@ -106,7 +106,7 @@
                 {{-- Third Card --}}
                 @if(isset($bannerProducts['Wall Hanging']))
                     <div class="banner-card reveal relative overflow-hidden w-full h-[380px]" data-md-width="33.333%">
-                        <div class="bg-img" style="background-image:url('{{ Storage::url($bannerProducts['Wall Hanging']->image) }}')"></div>
+                        <div class="bg-img" style="background-image:url('{{ Storage::url($bannerProducts['Wall Hanging']->image[0]) }}')"></div>
                         <div class="absolute inset-0 flex items-end justify-end p-8 z-10">
                             <div class="text-left">
                                 <a href="#" class="banner-link text-[0.6rem] font-bold tracking-wide-2 uppercase text-charcoal no-underline relative pb-1 inline-block">
@@ -120,7 +120,7 @@
                 {{-- Fourth Card --}}
                 @if(isset($bannerProducts['Bags']))
                     <div class="banner-card reveal-right relative overflow-hidden w-full h-[380px]" data-md-width="66.666%">
-                        <div class="bg-img" style="background-image:url('{{ Storage::url($bannerProducts['Plant Hanger']->image) }}')"></div>
+                        <div class="bg-img" style="background-image:url('{{ Storage::url($bannerProducts['Plant Hanger']->image[0]) }}')"></div>
                         <div class="absolute inset-0 flex items-center justify-center text-center p-8 z-10">
                             <div>
                                 <h3 class="font-cormorant font-semibold leading-[1.25] text-[#2a2a2a] mb-5 tracking-wide-2" style="font-size:clamp(1.6rem,2.5vw,2.2rem)">
@@ -138,7 +138,7 @@
         {{-- Fifth Card --}}
         @if(isset($bannerProducts['Wall Hanging']))
             <div class="banner-card reveal-right relative overflow-hidden w-full h-[500px] flex-none" data-lg="true">
-                <div class="bg-img" style="background-image:url('{{ Storage::url($bannerProducts['Wall Hanging']->image) }}')"></div>
+                <div class="bg-img" style="background-image:url('{{ Storage::url($bannerProducts['Wall Hanging']->image[0]) }}')"></div>
                 <div class="absolute inset-0 flex items-start justify-center text-center pt-10 z-10">
                     <div>
                         <h3 class="font-cormorant font-semibold leading-[1.25] text-[#2a2a2a] mb-5 text-[2rem]">
@@ -152,6 +152,7 @@
 
     </div>
 </section>
+
 <section class="bg-cream border-t border-charcoal/[0.07] border-b border-charcoal/[0.07]">
     <div class="max-w-[1200px] mx-auto px-8 py-16 grid gap-12 text-center" style="grid-template-columns:repeat(auto-fit,minmax(200px,1fr))">
         <div class="reveal delay-[100ms]">
@@ -187,38 +188,57 @@
         <div class="flex gap-6 sm:gap-10 md:gap-20 flex-wrap justify-center">
             <button onclick="switchProductTab('new')"  id="ptab-new"  class="tab-trigger active font-cormorant font-semibold" style="font-size:clamp(1.2rem,2.5vw,2rem)">New Arrivals</button>
             <button onclick="switchProductTab('best')" id="ptab-best" class="tab-trigger font-cormorant font-semibold"        style="font-size:clamp(1.2rem,2.5vw,2rem)">Best Sellers</button>
-            <button onclick="switchProductTab('sale')" id="ptab-sale" class="tab-trigger font-cormorant font-semibold"        style="font-size:clamp(1.2rem,2.5vw,2rem)">Items Sale</button>
+            <button onclick="switchProductTab('sale')" id="ptab-sale" class="tab-trigger font-cormorant font-semibold"        style="font-size:clamp(1.2rem,2.5vw,2rem)">Featured</button>
         </div>
     </div>
-    <div id="panel-new" class="tab-panel active products-grid" >
+    <div id="panel-new" class="tab-panel active products-grid">
         @foreach($newArrivals as $index => $product)
-            <div class="product-card-wrap group" style="transition-delay: {{ $index * 60 }}ms">
+            @php
+                $images = is_array($product->image) ? $product->image : json_decode($product->image, true);
+                $primaryImage = $images[0] ?? null;
+                $secondaryImage = $images[1] ?? ($images[0] ?? null);
+                $badge = $product->is_featured === 'new_arrival' ? 'New Arrival' : ($product->is_featured === 'best_seller' ? 'Best Seller' : null);
+                $badgeColor = $product->is_featured === 'new_arrival' ? 'bg-red-500' : 'bg-green-500';
+            @endphp
+            <div class="product-card-wrap group" style="transition-delay: {{ $loop->index * 60 }}ms">
                 <div class="relative overflow-hidden bg-cream mb-3 sm:mb-4" style="padding-bottom:125%">
-                    <img class="product-img-primary absolute inset-0 w-full h-full object-cover transition-opacity duration-500"
-                         src="{{ $product['img_primary'] }}" alt="{{ $product['name'] }}"/>
-                    <img class="product-img-secondary absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-500"
-                         src="{{ $product['img_secondary'] }}" alt="{{ $product['name'] }} alt"/>
+
+                    @if($primaryImage)
+                        <img class="product-img-primary absolute inset-0 w-full h-full object-cover transition-opacity duration-500"
+                             src="{{ Storage::url($primaryImage) }}"
+                             alt="{{ $product->title }}" />
+                    @endif
+
+                    @if($secondaryImage)
+                        <img class="product-img-secondary absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-500"
+                             src="{{ Storage::url($secondaryImage) }}"
+                             alt="{{ $product->title }} alt" />
+                    @endif
+
                     <div class="product-overlay absolute inset-0 flex items-end justify-center pb-5 opacity-0 transition-opacity duration-300"
                          style="background:rgba(30,30,30,0.08)">
                         <button class="add-cart-btn bg-white text-charcoal text-[0.6rem] font-bold tracking-wide-4 uppercase px-5 py-[10px] hover:bg-charcoal hover:text-white transition-colors duration-250 cursor-pointer">
                             Add to Cart
                         </button>
                     </div>
-                    @if($product['badge'])
-                        <span class="absolute top-3 left-0 {{ $product['badge_color'] }} text-white text-[0.55rem] font-bold tracking-wide-3 px-3 py-[5px] uppercase">
-                            {{ $product['badge'] }}
-                        </span>
+
+                    @if($badge)
+                        <span class="absolute top-3 left-0 {{ $badgeColor }} text-white text-[0.55rem] font-bold tracking-wide-3 px-3 py-[5px] uppercase">
+                        {{ $badge }}
+                    </span>
                     @endif
+
                     <button class="wish-btn absolute top-3 right-3 bg-transparent border-0 cursor-pointer" onclick="toggleWish(this)">
                         <i class="fa-regular fa-heart text-gray-400 text-lg"></i>
                     </button>
                 </div>
+
                 <div class="text-center">
-                    <h4 class="font-raleway text-[0.65rem] tracking-wide-4 uppercase text-gray-400 mb-1">{{ $product['name'] }}</h4>
+                    <h4 class="font-raleway text-[0.65rem] tracking-wide-4 uppercase text-gray-400 mb-1">{{ $product->title }}</h4>
                     <p class="font-cormorant font-semibold text-charcoal text-[1.1rem]">
-                        ${{ number_format($product['price'], 2) }}
-                        @if($product['old_price'])
-                            <span class="line-through text-gray-300 text-[0.85rem]">${{ number_format($product['old_price'], 2) }}</span>
+                        ${{ number_format($product->price, 2) }}
+                        @if(isset($product->old_price))
+                            <span class="line-through text-gray-300 text-[0.85rem]">${{ number_format($product->old_price, 2) }}</span>
                         @endif
                     </p>
                 </div>
@@ -227,34 +247,56 @@
     </div>
 
     <div id="panel-best" class="tab-panel products-grid">
-        @foreach($bestSellers as $index => $product)
+        @foreach($bestSellers as $product)
+            @php
+                // Decode images JSON if it's a string
+                $images = is_array($product->image) ? $product->image : json_decode($product->image, true);
+                $primaryImage = $images[0] ?? null;
+                $secondaryImage = $images[1] ?? ($images[0] ?? null);
+
+                // Badge logic
+                $badge = $product->is_featured === 'best_seller' ? 'Best Seller' :
+                         ($product->is_featured === 'new_arrival' ? 'New Arrival' : null);
+                $badgeColor = $product->is_featured === 'best_seller' ? 'bg-green-500' :
+                              ($product->is_featured === 'new_arrival' ? 'bg-red-500' : '');
+            @endphp
+
             <div class="product-card-wrap group" style="transition-delay: {{ $index * 60 }}ms">
                 <div class="relative overflow-hidden bg-cream mb-3 sm:mb-4" style="padding-bottom:125%">
-                    <img class="product-img-primary absolute inset-0 w-full h-full object-cover transition-opacity duration-500"
-                         src="{{ $product['img_primary'] }}" alt="{{ $product['name'] }}"/>
-                    <img class="product-img-secondary absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-500"
-                         src="{{ $product['img_secondary'] }}" alt="{{ $product['name'] }} alt"/>
+                    @if($primaryImage)
+                        <img class="product-img-primary absolute inset-0 w-full h-full object-cover transition-opacity duration-500"
+                             src="{{ Storage::url($primaryImage) }}" alt="{{ $product->title }}" />
+                    @endif
+
+                    @if($secondaryImage)
+                        <img class="product-img-secondary absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-500"
+                             src="{{ Storage::url($secondaryImage) }}" alt="{{ $product->title }} alt" />
+                    @endif
+
                     <div class="product-overlay absolute inset-0 flex items-end justify-center pb-5 opacity-0 transition-opacity duration-300"
                          style="background:rgba(30,30,30,0.08)">
                         <button class="add-cart-btn bg-white text-charcoal text-[0.6rem] font-bold tracking-wide-4 uppercase px-5 py-[10px] hover:bg-charcoal hover:text-white transition-colors duration-250 cursor-pointer">
                             Add to Cart
                         </button>
                     </div>
-                    @if($product['badge'])
-                        <span class="absolute top-3 left-0 {{ $product['badge_color'] }} text-white text-[0.55rem] font-bold tracking-wide-3 px-3 py-[5px] uppercase">
-                            {{ $product['badge'] }}
-                        </span>
+
+                    @if($badge)
+                        <span class="absolute top-3 left-0 {{ $badgeColor }} text-white text-[0.55rem] font-bold tracking-wide-3 px-3 py-[5px] uppercase">
+                    {{ $badge }}
+                </span>
                     @endif
+
                     <button class="wish-btn absolute top-3 right-3 bg-transparent border-0 cursor-pointer" onclick="toggleWish(this)">
                         <i class="fa-regular fa-heart text-gray-400 text-lg"></i>
                     </button>
                 </div>
+
                 <div class="text-center">
-                    <h4 class="font-raleway text-[0.65rem] tracking-wide-4 uppercase text-gray-400 mb-1">{{ $product['name'] }}</h4>
+                    <h4 class="font-raleway text-[0.65rem] tracking-wide-4 uppercase text-gray-400 mb-1">{{ $product->title }}</h4>
                     <p class="font-cormorant font-semibold text-charcoal text-[1.1rem]">
-                        ${{ number_format($product['price'], 2) }}
-                        @if($product['old_price'])
-                            <span class="line-through text-gray-300 text-[0.85rem]">${{ number_format($product['old_price'], 2) }}</span>
+                        ${{ number_format($product->price, 2) }}
+                        @if(isset($product->old_price) && $product->old_price)
+                            <span class="line-through text-gray-300 text-[0.85rem]">${{ number_format($product->old_price, 2) }}</span>
                         @endif
                     </p>
                 </div>
@@ -263,34 +305,51 @@
     </div>
 
     <div id="panel-sale" class="tab-panel products-grid">
-        @foreach($itemsSale as $index => $product)
+        @foreach($featured as $product)
+            @php
+                $images = is_array($product->image) ? $product->image : json_decode($product->image, true);
+                $primaryImage = $images[0] ?? null;
+                $secondaryImage = $images[1] ?? ($images[0] ?? null);
+                $badge = $product->is_featured === 'featured' ? 'featured' : null;
+                $badgeColor = $product->is_featured === 'featured' ? 'bg-blue-500' : '';
+            @endphp
+
             <div class="product-card-wrap group" style="transition-delay: {{ $index * 60 }}ms">
                 <div class="relative overflow-hidden bg-cream mb-3 sm:mb-4" style="padding-bottom:125%">
-                    <img class="product-img-primary absolute inset-0 w-full h-full object-cover transition-opacity duration-500"
-                         src="{{ $product['img_primary'] }}" alt="{{ $product['name'] }}"/>
-                    <img class="product-img-secondary absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-500"
-                         src="{{ $product['img_secondary'] }}" alt="{{ $product['name'] }} alt"/>
+                    @if($primaryImage)
+                        <img class="product-img-primary absolute inset-0 w-full h-full object-cover transition-opacity duration-500"
+                             src="{{ Storage::url($primaryImage) }}" alt="{{ $product->title }}" />
+                    @endif
+
+                    @if($secondaryImage)
+                        <img class="product-img-secondary absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-500"
+                             src="{{ Storage::url($secondaryImage) }}" alt="{{ $product->title }} alt" />
+                    @endif
+
                     <div class="product-overlay absolute inset-0 flex items-end justify-center pb-5 opacity-0 transition-opacity duration-300"
                          style="background:rgba(30,30,30,0.08)">
                         <button class="add-cart-btn bg-white text-charcoal text-[0.6rem] font-bold tracking-wide-4 uppercase px-5 py-[10px] hover:bg-charcoal hover:text-white transition-colors duration-250 cursor-pointer">
                             Add to Cart
                         </button>
                     </div>
-                    @if($product['badge'])
-                        <span class="absolute top-3 left-0 {{ $product['badge_color'] }} text-white text-[0.55rem] font-bold tracking-wide-3 px-3 py-[5px] uppercase">
-                            {{ $product['badge'] }}
-                        </span>
+
+                    @if($badge)
+                        <span class="absolute top-3 left-0 {{ $badgeColor }} text-white text-[0.55rem] font-bold tracking-wide-3 px-3 py-[5px] uppercase">
+                    {{ $badge }}
+                </span>
                     @endif
+
                     <button class="wish-btn absolute top-3 right-3 bg-transparent border-0 cursor-pointer" onclick="toggleWish(this)">
                         <i class="fa-regular fa-heart text-gray-400 text-lg"></i>
                     </button>
                 </div>
+
                 <div class="text-center">
-                    <h4 class="font-raleway text-[0.65rem] tracking-wide-4 uppercase text-gray-400 mb-1">{{ $product['name'] }}</h4>
+                    <h4 class="font-raleway text-[0.65rem] tracking-wide-4 uppercase text-gray-400 mb-1">{{ $product->title }}</h4>
                     <p class="font-cormorant font-semibold text-charcoal text-[1.1rem]">
-                        ${{ number_format($product['price'], 2) }}
-                        @if($product['old_price'])
-                            <span class="line-through text-gray-300 text-[0.85rem]">${{ number_format($product['old_price'], 2) }}</span>
+                        ${{ number_format($product->price, 2) }}
+                        @if(isset($product->old_price) && $product->old_price)
+                            <span class="line-through text-gray-300 text-[0.85rem]">${{ number_format($product->old_price, 2) }}</span>
                         @endif
                     </p>
                 </div>
@@ -299,7 +358,7 @@
     </div>
 
     <div class="flex justify-center mt-14 reveal">
-        <a href="#" class="shop-btn relative inline-block border-[1.5px] border-charcoal px-[52px] py-[14px] text-[0.65rem] font-bold tracking-wide-2 uppercase text-charcoal overflow-hidden transition-colors duration-[350ms] no-underline">
+        <a href="{{route('category')}}" class="shop-btn relative inline-block border-[1.5px] border-charcoal px-[52px] py-[14px] text-[0.65rem] font-bold tracking-wide-2 uppercase text-charcoal overflow-hidden transition-colors duration-[350ms] no-underline">
             <span class="relative z-[1]">View All Products</span>
         </a>
     </div>

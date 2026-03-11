@@ -17,7 +17,8 @@ return new class extends Migration
             $table->string('title')->nullable();
             $table->longText('description')->nullable();
             $table->decimal('price', 8, 2)->nullable();
-            $table->string('image')->nullable();
+            $table->json('image')->nullable();
+            $table->string('is_featured')->nullable();
             $table->timestamps();
         });
     }

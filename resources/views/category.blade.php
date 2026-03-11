@@ -41,11 +41,13 @@
         @foreach($categories as $cat)
             <button
                 class="cat-tab {{ $loop->first ? 'active' : '' }} flex items-center gap-2 px-[26px] py-[18px] text-[0.61rem] font-bold tracking-wide-3 uppercase text-[rgba(30,30,30,0.42)] bg-transparent border-none cursor-pointer whitespace-nowrap flex-shrink-0"
-                id="ctab-{{ $cat['key'] }}"
-                onclick="switchCat('{{ $cat['key'] }}')">
-                <i class="fas {{ $cat['icon'] }} cat-icon text-[0.85rem] transition-transform duration-300"></i>
-                {{ $cat['label'] }}
-                <span class="cat-count text-[0.54rem] font-bold bg-[rgba(30,30,30,0.07)] text-[rgba(30,30,30,0.38)] px-[7px] py-[2px] rounded-[20px] transition-all duration-[250ms]">{{ $cat['count'] }}</span>
+                id="ctab-{{ Str::slug($cat->name) }}"
+                onclick="switchCat('{{ Str::slug($cat->name) }}')">
+                <i class="fas fa-tag cat-icon text-[0.85rem] transition-transform duration-300"></i>
+                {{ $cat->name }}
+                <span class="cat-count text-[0.54rem] font-bold bg-[rgba(30,30,30,0.07)] text-[rgba(30,30,30,0.38)] px-[7px] py-[2px] rounded-[20px] transition-all duration-[250ms]">
+            {{ $cat->products->count() ?? ''}}
+        </span>
             </button>
         @endforeach
     </div>
@@ -146,86 +148,6 @@
             </button>
         </div>
     </div>
-
-    @foreach($categories as $cat)
-        @if($cat['key'] === 'all') @continue @endif
-        @php
-            $catProds = $cat['key'] === 'sale'
-                ? $saleProducts
-                : ($byCategory[$cat['key']] ?? collect())->toArray();
-        @endphp
-        <div class="tab-panel" id="panel-{{ $cat['key'] }}">
-            <div class="cat-heading flex items-end justify-between mb-9 gap-4" id="heading-{{ $cat['key'] }}">
-                <div>
-                    <p class="text-tag font-extrabold tracking-wide-7 uppercase text-rouge mb-2">✦ {{ $cat['label'] }}</p>
-                    <h2 class="font-cormorant font-bold italic text-charcoal leading-none text-[clamp(2rem,3.5vw,3rem)]">{{ $cat['label'] }}</h2>
-                    <p class="text-xs7 text-[rgba(30,30,30,0.42)] leading-[1.7] mt-2 max-w-[420px]">{{ $cat['desc'] }}</p>
-                    <div class="cat-heading-line"></div>
-                </div>
-                <p class="text-xs4 font-bold tracking-wide-1 uppercase text-[rgba(30,30,30,0.42)] pb-[6px]">
-                    {{ count($catProds) }} items
-                </p>
-            </div>
-
-            <div class="products-grid grid grid-cols-shop-4 gap-7 transition-opacity duration-[350ms]" id="grid-{{ $cat['key'] }}">
-                @if(count($catProds) === 0)
-                    <div class="col-span-full text-center py-[80px] px-5">
-                        <div class="text-[3rem] text-[rgba(30,30,30,0.08)] mb-5"><i class="fas fa-leaf"></i></div>
-                        <h3 class="font-cormorant text-[2rem] italic text-charcoal mb-2">Coming soon</h3>
-                        <p class="text-[0.75rem] text-[rgba(30,30,30,0.42)]">We're adding new pieces to this collection.</p>
-                    </div>
-                @else
-                    @foreach($catProds as $i => $p)
-                        <div class="product-card" style="transition-delay:{{ $i * 55 }}ms" data-price="{{ $p['price'] }}" data-rating="{{ $p['rating'] }}">
-                            <div class="relative overflow-hidden bg-cream mb-[14px]" style="padding-bottom:120%">
-                                <img class="card-img absolute inset-0 w-full h-full object-cover" src="{{ $p['img'] }}" alt="{{ $p['name'] }}"/>
-                                <img class="card-img-hover absolute inset-0 w-full h-full object-cover" src="{{ $p['img2'] }}" alt="{{ $p['name'] }}"/>
-                                <div class="card-overlay absolute inset-0 bg-[rgba(30,30,30,0.07)] opacity-0 flex flex-col items-center justify-end pb-[18px] gap-2">
-                                    <button class="btn-cart px-[22px] py-[10px] bg-white text-charcoal border-none cursor-pointer font-raleway text-xs2 font-bold tracking-wide-3 uppercase">Add to Cart</button>
-                                    <button class="btn-view px-[18px] py-[6px] bg-transparent text-white border border-[rgba(255,255,255,0.45)] cursor-pointer font-raleway text-[0.56rem] font-bold tracking-wide-2 uppercase">Quick View</button>
-                                </div>
-                                @if($p['badge'])
-                                    <span class="absolute top-3 left-0 z-[2] px-[11px] py-[5px] {{ $p['badge']['class'] }} text-white text-2xs font-extrabold tracking-wide-2 uppercase">{{ $p['badge']['text'] }}</span>
-                                @endif
-                                <button class="wish-btn absolute top-3 right-3 z-[2] w-[32px] h-[32px] rounded-full bg-[rgba(253,250,247,0.82)] backdrop-blur-sm border-none cursor-pointer flex items-center justify-center text-[0.72rem] text-[rgba(30,30,30,0.38)] transition-all duration-[250ms] hover:scale-[1.18] hover:text-rouge hover:bg-white"
-                                        onclick="toggleWish(this)">
-                                    <i class="fa-regular fa-heart"></i>
-                                </button>
-                            </div>
-                            <div class="text-center">
-                                <p class="text-tag font-bold tracking-wide-5 uppercase text-[rgba(30,30,30,0.42)] mb-[5px]">{{ $cat['label'] }}</p>
-                                <h3 class="font-cormorant text-[1.05rem] font-semibold text-charcoal mb-[5px]">{{ $p['name'] }}</h3>
-                                <div class="flex items-center justify-center gap-[2px] mb-[6px]">
-                                    @for($s=1;$s<=5;$s++)
-                                        <span class="text-[0.55rem] {{ $s<=$p['rating'] ? 'text-[#d4a843]' : 'text-[#e0d4c0]' }}">★</span>
-                                    @endfor
-                                    <span class="text-[0.56rem] text-[rgba(30,30,30,0.42)] ml-1">({{ $p['reviews'] }})</span>
-                                </div>
-                                <p class="font-cormorant text-[1.05rem] font-semibold text-charcoal">
-                                    @if($p['old'])
-                                        <span class="text-rouge">${{ number_format($p['price'],2) }}</span>
-                                        <del class="text-[rgba(30,30,30,0.28)] text-[0.85rem] ml-[5px]">${{ number_format($p['old'],2) }}</del>
-                                    @else
-                                        <span>${{ number_format($p['price'],2) }}</span>
-                                    @endif
-                                </p>
-                            </div>
-                        </div>
-                    @endforeach
-                @endif
-            </div>
-
-            @if(count($catProds) > 0)
-                <div class="reveal flex justify-center mt-14">
-                    <button class="btn-load relative overflow-hidden border-[1.5px] border-charcoal px-[52px] py-[14px] font-raleway text-xs5 font-bold tracking-wide-5 uppercase text-charcoal bg-transparent cursor-pointer transition-colors duration-[350ms]"
-                            onclick="handleLoadMore(this)">
-                        <span>Load More</span>
-                    </button>
-                </div>
-            @endif
-        </div>
-    @endforeach
-
 </div>
 
 @endsection

@@ -21,6 +21,16 @@ class ProductForm
                     ->required()
                     ->searchable()
                     ->placeholder('Select a category'),
+                Select::make('is_featured')
+                    ->label('Product Status')
+                    ->options([
+                        'best_seller' => 'Best Seller',
+                        'new_arrival' => 'New Arrival',
+                        'featured' => 'Featured',
+                    ])
+                    ->required()
+                    ->searchable()
+                    ->placeholder('Select status'),
                 TextInput::make('title')
                     ->default(null),
                 Textarea::make('description')
@@ -31,7 +41,9 @@ class ProductForm
                     ->default(null)
                     ->prefix('Rs'),
                 FileUpload::make('image')
-                    ->image()->directory('category')
+                    ->image()
+                    ->multiple()
+                    ->directory('product')
                     ->disk('public'),
             ]);
     }

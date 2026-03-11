@@ -12,7 +12,15 @@ class Product extends Model
         'description',
         'price',
         'image',
+        'is_featured',
     ];
+
+    protected $casts = [
+        'image' => 'array',
+    ];
+    const NEW_ARRIVAL = 'new_arrival';
+    const BEST_SELLER = 'best_seller';
+    const FEATURED = 'featured';
 
     public function category()
     {

@@ -26,9 +26,12 @@ class ProductsTable
                     ->sortable(),
                 ImageColumn::make('image')
                     ->disk('public')
-                    ->getStateUsing(fn ($record) => $record->image)
-                    ->url(fn ($record) => Storage::url($record->image))
+                    ->getStateUsing(fn ($record) => $record->image[0])
+                    ->url(fn ($record) => Storage::url($record->image[0]))
                     ->rounded(),
+                TextColumn::make('is_featured')
+                    ->label('Featured')
+                    ->sortable(),
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
