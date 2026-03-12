@@ -20,11 +20,11 @@
 
         <div class="flex items-center gap-3">
             <a href="#" class="w-[38px] h-[38px] border border-charcoal/20 rounded-full flex items-center justify-center text-charcoal text-[0.7rem] transition-all duration-[250ms] hover:bg-charcoal hover:text-white hover:border-charcoal">
-                <i class="fas fa-search"></i>
+                <i class="fas fa-search w-6 h-6 flex items-center justify-center text-base"></i>
             </a>
-            <a href="#" class="relative w-[38px] h-[38px] border border-charcoal/20 rounded-full flex items-center justify-center text-charcoal text-[0.7rem] transition-all duration-[250ms] hover:bg-charcoal hover:text-white hover:border-charcoal">
-                <i class="fas fa-shopping-bag"></i>
-                <span class="absolute -top-1 -right-1 w-4 h-4 bg-rouge text-white text-[9px] font-bold flex items-center justify-center rounded-full">0</span>
+            <a href="https://api.whatsapp.com/send?phone=923166448508" class="relative w-[38px] h-[38px] border border-charcoal/20 rounded-full flex items-center justify-center text-charcoal text-[0.7rem] transition-all duration-[250ms] hover:bg-charcoal hover:text-white hover:border-charcoal">
+                <img src="{{asset('img/img.png')}}" alt="WhatsApp" class="w-6 h-6 object-contain">
+{{--                <span class="absolute -top-1 -right-1 w-4 h-4 bg-rouge text-white text-[9px] font-bold flex items-center justify-center rounded-full">0</span>--}}
             </a>
             <button id="menuToggle" class="lg:hidden w-[38px] h-[38px] border border-charcoal/20 rounded-full flex items-center justify-center text-charcoal text-[0.75rem] transition-all duration-[250ms] hover:bg-charcoal hover:text-white">
                 <i class="fas fa-bars"></i>

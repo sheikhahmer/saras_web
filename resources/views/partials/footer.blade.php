@@ -119,7 +119,7 @@
                     </div>
                     <div class="flex items-center gap-3">
                         <i class="fas fa-phone text-[#d94f4f] text-[0.75rem] md:text-xs shrink-0"></i>
-                        <span style="font-family: Raleway, sans-serif;" class="text-[rgba(250,246,241,0.45)] text-[0.75rem] md:text-xs">+1 (555) 234-5678</span>
+                        <span style="font-family: Raleway, sans-serif;" class="text-[rgba(250,246,241,0.45)] text-[0.75rem] md:text-xs">+92 3166448508</span>
                     </div>
                 </div>
 

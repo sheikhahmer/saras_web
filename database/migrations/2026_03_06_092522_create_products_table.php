@@ -17,7 +17,12 @@ return new class extends Migration
             $table->string('title')->nullable();
             $table->longText('description')->nullable();
             $table->decimal('price', 8, 2)->nullable();
+            $table->string('has_offer')->default(0);
+            $table->decimal('old_price', 8, 2)->nullable();
+            $table->decimal('new_price', 8, 2)->nullable();
+            $table->string('tags')->nullable();
             $table->json('image')->nullable();
+            $table->json('care_instructions')->nullable();
             $table->string('is_featured')->nullable();
             $table->timestamps();
         });

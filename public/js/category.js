@@ -75,8 +75,7 @@ function animateCards(panelId) {
         card.classList.remove('visible');
         setTimeout(() => card.classList.add('visible'), 80 + i * 60);
     });
-    const hKey = panelId.replace('panel-', '');
-    const h = document.getElementById('heading-' + hKey);
+    const h = document.getElementById('heading-all');
     if (h) {
         h.classList.remove('visible');
         setTimeout(() => h.classList.add('visible'), 40);
@@ -94,26 +93,66 @@ window.addEventListener('load', () => {
     }
 });
 
-function switchCat(key) {
+async function switchCat(key) {
     if (key === activeCat) return;
+
+    // UI Updates for Tabs
     document.querySelectorAll('.cat-tab').forEach(t => t.classList.remove('active'));
     const tab = document.getElementById('ctab-' + key);
     if (tab) {
         tab.classList.add('active');
         tab.scrollIntoView({ behavior:'smooth', inline:'center', block:'nearest' });
     }
-    const prev = document.getElementById('panel-' + activeCat);
-    if (prev) prev.classList.remove('active');
-    const next = document.getElementById('panel-' + key);
-    if (next) { next.classList.add('active'); animateCards('panel-' + key); }
+
     const catData = CATS.find(c => c.key === key);
     const countEl = document.getElementById('countNum');
-    if (countEl) countEl.textContent = catData ? catData.count : '—';
+    if (countEl) countEl.textContent = catData ? catData.count : '0';
     updateChip(key);
     activeCat = key;
+
     const barWrap = document.getElementById('catBar');
     if (barWrap && barWrap.closest('div')) {
         setTimeout(() => barWrap.closest('div').scrollIntoView({ behavior:'smooth', block:'nearest' }), 60);
+    }
+
+    // Ajax fetch
+    const panel = document.getElementById('panel-all');
+    if (!panel) return;
+    
+    // Add loading state
+    panel.style.opacity = '0.5';
+    panel.style.pointerEvents = 'none';
+
+    try {
+        const response = await fetch(`/products-by-category/${key}`);
+        if (!response.ok) throw new Error('Network response was not ok');
+        const data = await response.json();
+
+        // Update HTML
+        panel.innerHTML = data.html;
+        
+        // Restore opacity
+        panel.style.opacity = '1';
+        panel.style.pointerEvents = 'auto';
+
+        // Re-apply view style
+        const activeViewBtn = document.querySelector('.view-btn.bg-charcoal');
+        if (activeViewBtn) {
+            let cls = 'cols-4';
+            if (activeViewBtn.title.includes('3')) cls = 'cols-3';
+            else if (activeViewBtn.title.includes('5')) cls = 'cols-5';
+            setView(cls, activeViewBtn);
+        }
+
+        // Trigger animations
+        animateCards('panel-all');
+        
+        // Observe new reveal elements
+        document.querySelectorAll('.reveal').forEach(el => revObs.observe(el));
+    } catch (error) {
+        console.error('Error fetching category products:', error);
+        panel.style.opacity = '1';
+        panel.style.pointerEvents = 'auto';
     }
 }
 
@@ -140,7 +179,7 @@ function updateChip(key) {
 }
 
 function sortProducts(val) {
-    const grid = document.getElementById('grid-' + activeCat);
+    const grid = document.getElementById('grid-all');
     if (!grid) return;
     grid.classList.add('filtering');
     setTimeout(() => {
@@ -155,7 +194,7 @@ function sortProducts(val) {
         });
         cards.forEach(c => grid.appendChild(c));
         grid.classList.remove('filtering');
-        animateCards('panel-' + activeCat);
+        animateCards('panel-all');
     }, 320);
 }
 
@@ -173,7 +212,7 @@ function setView(cls, btn) {
         else if (cls === 'cols-5') g.style.gridTemplateColumns = 'repeat(5,1fr)';
         else g.style.gridTemplateColumns = 'repeat(4,1fr)';
     });
-    animateCards('panel-' + activeCat);
+    animateCards('panel-all');
 }
 
 function toggleWish(btn) {

@@ -6,15 +6,6 @@
     <link rel="stylesheet" href="{{ asset('css/category.css') }}">
 @endpush
 
-@push('scripts')
-    <script>
-        window.CATEGORY_DATA = @json($categories);
-    </script>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/js/all.min.js" defer></script>
-    <script src="{{ asset('js/category.js') }}"></script>
-@endpush
-
 @section('content')
 
 {{-- ══════════════ PAGE HERO ══════════════ --}}
@@ -38,9 +29,19 @@
 {{-- ══════════════ CATEGORY TABS BAR ══════════════ --}}
 <div class="sticky top-[72px] z-[400] bg-cream border-b border-[rgba(30,30,30,0.08)]">
     <div id="catBar" class="max-w-screen-shop mx-auto px-[60px] flex items-stretch overflow-x-auto">
+        <button
+            class="cat-tab active flex items-center gap-2 px-[26px] py-[18px] text-[0.61rem] font-bold tracking-wide-3 uppercase text-[rgba(30,30,30,0.42)] bg-transparent border-none cursor-pointer whitespace-nowrap flex-shrink-0"
+            id="ctab-all"
+            onclick="switchCat('all')">
+            <i class="fas fa-globe cat-icon text-[0.85rem] transition-transform duration-300"></i>
+            All Products
+            <span class="cat-count text-[0.54rem] font-bold bg-[rgba(30,30,30,0.07)] text-[rgba(30,30,30,0.38)] px-[7px] py-[2px] rounded-[20px] transition-all duration-[250ms]">
+                {{ count($products) }}
+            </span>
+        </button>
         @foreach($categories as $cat)
             <button
-                class="cat-tab {{ $loop->first ? 'active' : '' }} flex items-center gap-2 px-[26px] py-[18px] text-[0.61rem] font-bold tracking-wide-3 uppercase text-[rgba(30,30,30,0.42)] bg-transparent border-none cursor-pointer whitespace-nowrap flex-shrink-0"
+                class="cat-tab flex items-center gap-2 px-[26px] py-[18px] text-[0.61rem] font-bold tracking-wide-3 uppercase text-[rgba(30,30,30,0.42)] bg-transparent border-none cursor-pointer whitespace-nowrap flex-shrink-0"
                 id="ctab-{{ Str::slug($cat->name) }}"
                 onclick="switchCat('{{ Str::slug($cat->name) }}')">
                 <i class="fas fa-tag cat-icon text-[0.85rem] transition-transform duration-300"></i>
@@ -88,67 +89,34 @@
 
 {{-- ══════════════ PRODUCTS SECTION ══════════════ --}}
 <div class="max-w-screen-shop mx-auto px-[60px] pt-[40px] pb-[80px]">
-
-    <div class="tab-panel active" id="panel-all">
-        <div class="cat-heading flex items-end justify-between mb-9 gap-4" id="heading-all">
-            <div>
-                <p class="text-tag font-extrabold tracking-wide-7 uppercase text-rouge mb-2">✦ Full Collection</p>
-                <h2 class="font-cormorant font-bold italic text-charcoal leading-none text-[clamp(2rem,3.5vw,3rem)]">All Products</h2>
-                <p class="text-xs7 text-[rgba(30,30,30,0.42)] leading-[1.7] mt-2 max-w-[420px]">Every handcrafted piece — from statement wall art to delicate plant hangers.</p>
-                <div class="cat-heading-line"></div>
-            </div>
+        <div class="tab-panel active" id="panel-all">
+            @include('partials.products_grid', [
+                'products' => $products,
+                'categoryName' => 'All Products',
+                'categorySubtitle' => 'Full Collection',
+                'categoryDesc' => 'Every handcrafted piece — from statement wall art to delicate plant hangers.'
+            ])
         </div>
-
-        <div class="products-grid grid grid-cols-shop-4 gap-7 transition-opacity duration-[350ms]" id="grid-all">
-            @foreach($products as $i => $p)
-                <div class="product-card" style="transition-delay:{{ $i * 55 }}ms" data-price="{{ $p['price'] }}" data-rating="{{ $p['rating'] }}">
-                    <div class="relative overflow-hidden bg-cream mb-[14px]" style="padding-bottom:120%">
-                        <img class="card-img absolute inset-0 w-full h-full object-cover" src="{{ $p['img'] }}" alt="{{ $p['name'] }}"/>
-                        <img class="card-img-hover absolute inset-0 w-full h-full object-cover" src="{{ $p['img2'] }}" alt="{{ $p['name'] }}"/>
-                        <div class="card-overlay absolute inset-0 bg-[rgba(30,30,30,0.07)] opacity-0 flex flex-col items-center justify-end pb-[18px] gap-2">
-                            <button class="btn-cart px-[22px] py-[10px] bg-white text-charcoal border-none cursor-pointer font-raleway text-xs2 font-bold tracking-wide-3 uppercase">Add to Cart</button>
-                            <button class="btn-view px-[18px] py-[6px] bg-transparent text-white border border-[rgba(255,255,255,0.45)] cursor-pointer font-raleway text-[0.56rem] font-bold tracking-wide-2 uppercase">Quick View</button>
-                        </div>
-                        @if($p['badge'])
-                            <span class="absolute top-3 left-0 z-[2] px-[11px] py-[5px] {{ $p['badge']['class'] }} text-white text-2xs font-extrabold tracking-wide-2 uppercase">{{ $p['badge']['text'] }}</span>
-                        @endif
-                        <button class="wish-btn absolute top-3 right-3 z-[2] w-[32px] h-[32px] rounded-full bg-[rgba(253,250,247,0.82)] backdrop-blur-sm border-none cursor-pointer flex items-center justify-center text-[0.72rem] text-[rgba(30,30,30,0.38)] transition-all duration-[250ms] hover:scale-[1.18] hover:text-rouge hover:bg-white"
-                                onclick="toggleWish(this)">
-                            <i class="fa-regular fa-heart"></i>
-                        </button>
-                    </div>
-                    <div class="text-center">
-                        <p class="text-tag font-bold tracking-wide-5 uppercase text-[rgba(30,30,30,0.42)] mb-[5px]">
-                            {{ collect($categories)->firstWhere('key',$p['category'])['label'] ?? '' }}
-                        </p>
-                        <h3 class="font-cormorant text-[1.05rem] font-semibold text-charcoal mb-[5px]">{{ $p['name'] }}</h3>
-                        <div class="flex items-center justify-center gap-[2px] mb-[6px]">
-                            @for($s=1;$s<=5;$s++)
-                                <span class="text-[0.55rem] {{ $s<=$p['rating'] ? 'text-[#d4a843]' : 'text-[#e0d4c0]' }}">★</span>
-                            @endfor
-                            <span class="text-[0.56rem] text-[rgba(30,30,30,0.42)] ml-1">({{ $p['reviews'] }})</span>
-                        </div>
-                        <p class="font-cormorant text-[1.05rem] font-semibold text-charcoal">
-                            @if($p['old'])
-                                <span class="text-rouge">${{ number_format($p['price'],2) }}</span>
-                                <del class="text-[rgba(30,30,30,0.28)] text-[0.85rem] ml-[5px]">${{ number_format($p['old'],2) }}</del>
-                            @else
-                                <span>${{ number_format($p['price'],2) }}</span>
-                            @endif
-                        </p>
-                    </div>
-                </div>
-            @endforeach
-        </div>
-
-        <div class="reveal flex justify-center mt-14">
-            <button class="btn-load relative overflow-hidden border-[1.5px] border-charcoal px-[52px] py-[14px] font-raleway text-xs5 font-bold tracking-wide-5 uppercase text-charcoal bg-transparent cursor-pointer transition-colors duration-[350ms]"
-                    onclick="handleLoadMore(this)">
-                <span>Load More</span>
-            </button>
-        </div>
-    </div>
 </div>
 
 @endsection
 
+@push('scripts')
+    @php
+        $categoryData = collect([
+            ['key' => 'all', 'label' => 'All Products', 'count' => count($products)]
+        ])->merge(
+            $categories->map(function($c) {
+                return [
+                    'key' => \Illuminate\Support\Str::slug($c->name),
+                    'label' => $c->name,
+                    'count' => $c->products ? $c->products->count() : 0
+                ];
+            })
+        )->toArray();
+    @endphp
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/js/all.min.js" defer></script>
+    <script src="{{ asset('js/category.js') }}"></script>
+@endpush
