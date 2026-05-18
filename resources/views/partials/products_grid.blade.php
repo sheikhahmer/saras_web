@@ -20,7 +20,7 @@
             $oldPrice = null;
         @endphp
         <div class="product-card" style="transition-delay:{{ $i * 55 }}ms" data-price="{{ $price }}" data-rating="{{ $rating }}">
-            <a href="{{ route('product.show', ['id' => $p->id]) }}" class="block no-underline">
+            <a href="{{ route('product.show', ['product' => $p->slug]) }}" class="block no-underline">
                 <div class="relative overflow-hidden bg-cream mb-[14px]" style="padding-bottom:120%">
                     <img class="card-img absolute inset-0 w-full h-full object-cover" src="{{ $img1 }}" alt="{{ $p->title }}"/>
                     <img class="card-img-hover absolute inset-0 w-full h-full object-cover" src="{{ $img2 }}" alt="{{ $p->title }}"/>
@@ -33,10 +33,12 @@
                     @elseif($p->is_featured == \App\Models\Product::BEST_SELLER)
                         <span class="absolute top-3 left-0 z-[2] px-[11px] py-[5px] bg-[#d4a843] text-white text-2xs font-extrabold tracking-wide-2 uppercase">Best Seller</span>
                     @endif
+                    {{-- Wishlist (disabled)
                     <button class="wish-btn absolute top-3 right-3 z-[2] w-[32px] h-[32px] rounded-full bg-[rgba(253,250,247,0.82)] backdrop-blur-sm border-none cursor-pointer flex items-center justify-center text-[0.72rem] text-[rgba(30,30,30,0.38)] transition-all duration-[250ms] hover:scale-[1.18] hover:text-rouge hover:bg-white"
                             onclick="event.preventDefault(); toggleWish(this)">
                         <i class="fa-regular fa-heart"></i>
                     </button>
+                    --}}
                 </div>
                 <div class="text-center">
                     <p class="text-tag font-bold tracking-wide-5 uppercase text-[rgba(30,30,30,0.42)] mb-[5px]">

@@ -2,34 +2,44 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Database\Seeders\Concerns\CopiesPublicImages;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
 class SliderSeeder extends Seeder
 {
+    use CopiesPublicImages;
+
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        DB::table('sliders')->insert([
+        $sliders = [
             [
                 'id' => 1,
                 'title' => 'Elegant Macrame Decor',
-                'image' => 'slider/01KK1CBN01JN53AWEPJTHY174P.jpg',
                 'hashtag' => '#SARAS-CREATIONS',
-                'created_at' => now(),
-                'updated_at' => now(),
+                'public_image' => 'img/slider1.jpg',
             ],
             [
                 'id' => 2,
                 'title' => 'Premium Cotton Macrame',
-                'image' => 'slider/01KK1CR2QR50JGMWT7YXTV79SA.jpg',
                 'hashtag' => '#SARAS-CREATIONS',
+                'public_image' => 'img/slider-2.jpg',
+            ],
+        ];
+
+        foreach ($sliders as $slider) {
+            $imagePath = $this->copyPublicImage($slider['public_image'], 'slider');
+            unset($slider['public_image']);
+
+            DB::table('sliders')->insert([
+                ...$slider,
+                'image' => $imagePath,
                 'created_at' => now(),
                 'updated_at' => now(),
-            ],
-        ]);
+            ]);
+        }
     }
 }

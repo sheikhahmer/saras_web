@@ -1,0 +1,232 @@
+:root {
+    --cream: #FAF6F1;
+    --charcoal: #1e1e1e;
+    --rouge: #d94f4f;
+    --sand: #C9B49A;
+    --warm-white: #FDFAF7;
+}
+
+body.admin-body {
+    font-family: 'Raleway', sans-serif;
+    background: var(--warm-white);
+    color: var(--charcoal);
+    min-height: 100vh;
+}
+
+.admin-sidebar {
+    background: var(--charcoal);
+    color: var(--cream);
+}
+
+.admin-sidebar a {
+    color: rgba(250, 246, 241, 0.65);
+    text-decoration: none;
+    transition: color 0.2s ease, padding-left 0.2s ease;
+}
+
+.admin-sidebar a:hover,
+.admin-sidebar a.active {
+    color: var(--cream);
+}
+
+.admin-sidebar a.active {
+    border-left: 2px solid var(--rouge);
+    padding-left: 12px;
+}
+
+.admin-card {
+    background: #fff;
+    border: 1px solid rgba(30, 30, 30, 0.08);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.04);
+}
+
+.admin-label {
+    display: block;
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #888;
+    margin-bottom: 0.5rem;
+}
+
+.admin-input,
+.admin-select,
+.admin-textarea {
+    width: 100%;
+    border: 1.5px solid rgba(30, 30, 30, 0.12);
+    background: var(--cream);
+    padding: 0.75rem 1rem;
+    font-size: 0.875rem;
+    outline: none;
+    transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.admin-input:focus,
+.admin-select:focus,
+.admin-textarea:focus {
+    border-color: var(--rouge);
+    background: #fff;
+}
+
+.admin-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border: 1.5px solid var(--charcoal);
+    padding: 0.65rem 1.5rem;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.admin-btn-primary {
+    background: var(--charcoal);
+    color: var(--cream);
+}
+
+.admin-btn-primary:hover {
+    background: var(--rouge);
+    border-color: var(--rouge);
+    color: #fff;
+}
+
+.admin-btn-outline {
+    background: transparent;
+    color: var(--charcoal);
+}
+
+.admin-btn-outline:hover {
+    background: var(--charcoal);
+    color: var(--cream);
+}
+
+.admin-btn-danger {
+    border-color: var(--rouge);
+    color: var(--rouge);
+    background: transparent;
+}
+
+.admin-btn-danger:hover {
+    background: var(--rouge);
+    color: #fff;
+}
+
+.admin-table th {
+    font-size: 0.58rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #999;
+    border-bottom: 1px solid rgba(30, 30, 30, 0.08);
+    padding: 0.9rem 1rem;
+    text-align: left;
+}
+
+.admin-table td {
+    padding: 1rem;
+    border-bottom: 1px solid rgba(30, 30, 30, 0.06);
+    vertical-align: middle;
+    font-size: 0.875rem;
+}
+
+.admin-table tr:hover td {
+    background: rgba(250, 246, 241, 0.5);
+}
+
+.admin-alert-success {
+    background: rgba(217, 79, 79, 0.08);
+    border-left: 3px solid var(--rouge);
+    color: var(--charcoal);
+    padding: 0.9rem 1rem;
+    font-size: 0.85rem;
+}
+
+.admin-alert-error {
+    background: rgba(217, 79, 79, 0.1);
+    border-left: 3px solid var(--rouge);
+    color: #7a1f1f;
+    padding: 0.9rem 1rem;
+    font-size: 0.85rem;
+}
+
+.admin-stat-card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.5rem;
+    line-height: 1;
+}
+
+.admin-thumb {
+    width: 48px;
+    height: 48px;
+    object-fit: cover;
+    border: 1px solid rgba(30, 30, 30, 0.08);
+}
+
+.admin-toggle {
+    accent-color: var(--rouge);
+}
+
+.offer-fields.hidden {
+    display: none;
+}
+
+.price-field.hidden {
+    display: none;
+}
+
+.image-preview-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 0.75rem;
+}
+
+.image-preview-item {
+    position: relative;
+    border: 1px solid rgba(30, 30, 30, 0.1);
+    background: var(--cream);
+}
+
+.image-preview-item img {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    display: block;
+}
+
+.image-preview-item label {
+    display: block;
+    padding: 0.35rem;
+    font-size: 0.65rem;
+    text-align: center;
+}
+
+.admin-pagination nav {
+    display: flex;
+    gap: 0.35rem;
+    flex-wrap: wrap;
+}
+
+.admin-pagination nav a,
+.admin-pagination nav span {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 2rem;
+    padding: 0.4rem 0.65rem;
+    border: 1px solid rgba(30, 30, 30, 0.12);
+    font-size: 0.75rem;
+    text-decoration: none;
+    color: var(--charcoal);
+}
+
+.admin-pagination nav span[aria-current="page"] {
+    background: var(--charcoal);
+    color: var(--cream);
+    border-color: var(--charcoal);
+}

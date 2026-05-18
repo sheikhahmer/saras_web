@@ -20,6 +20,8 @@ class DatabaseSeeder extends Seeder
         $this->call(BannerSeeder::class);
         $this->call(ProductSeeder::class);
         $this->call(SliderSeeder::class);
+        $this->call(GalleryImageSeeder::class);
+        $this->call(SiteSettingSeeder::class);
 
         User::factory()->create([
             'name' => 'Admin',

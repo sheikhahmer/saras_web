@@ -160,7 +160,7 @@ async function switchCat(key) {
 window.switchCat = switchCat;
 window.sortProducts = sortProducts;
 window.setView = setView;
-window.toggleWish = toggleWish;
+// window.toggleWish = toggleWish; /* wishlist disabled */
 window.handleLoadMore = handleLoadMore;
 
 function updateChip(key) {
@@ -215,12 +215,14 @@ function setView(cls, btn) {
     animateCards('panel-all');
 }
 
+/* Wishlist disabled
 function toggleWish(btn) {
     btn.classList.toggle('on');
     const icon = btn.querySelector('i');
     if (!icon) return;
     icon.className = btn.classList.contains('on') ? 'fa-solid fa-heart' : 'fa-regular fa-heart';
 }
+*/
 
 function handleLoadMore(btn) {
     btn.innerHTML = '<span><i class="fas fa-spinner fa-spin"></i> Loading…</span>';

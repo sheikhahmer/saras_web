@@ -2,18 +2,21 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Database\Seeders\Concerns\CopiesPublicImages;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class ProductSeeder extends Seeder
 {
+    use CopiesPublicImages;
+
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        DB::table('products')->insert([
+        $products = [
             [
                 'id' => 1,
                 'category_id' => 1,
@@ -25,11 +28,7 @@ class ProductSeeder extends Seeder
                 'new_price' => 1100.00,
                 'is_featured' => 'featured',
                 'tags' => 'Macrame, Wall Art, Handcraft, Cotton, Decor',
-                'image' => json_encode([
-                    'product/01KK1EMJZ7MTR2E7SYVYKQP50R.jpg',
-                ]),
-                'created_at' => now(),
-                'updated_at' => now(),
+                'public_images' => ['img/cotton-cord.jpg', 'img/cord-2.jpeg'],
             ],
             [
                 'id' => 2,
@@ -42,11 +41,7 @@ class ProductSeeder extends Seeder
                 'new_price' => 1100.00,
                 'is_featured' => 'featured',
                 'tags' => 'Macrame, Wall Art, Handcraft, Cotton, Decor',
-                'image' => json_encode([
-                    'product/01KK1ENR3R8SWX6V9KR9XNA473.avif',
-                ]),
-                'created_at' => now(),
-                'updated_at' => now(),
+                'public_images' => ['img/banner-img2.avif'],
             ],
             [
                 'id' => 3,
@@ -59,11 +54,7 @@ class ProductSeeder extends Seeder
                 'new_price' => 1100.00,
                 'is_featured' => 'featured',
                 'tags' => 'Macrame, Wall Art, Handcraft, Cotton, Decor',
-                'image' => json_encode([
-                    'product/01KK1ENSEEK50T6ZVKB4CZ4AXN.png',
-                ]),
-                'created_at' => now(),
-                'updated_at' => now(),
+                'public_images' => ['img/banner-img-7.png'],
             ],
             [
                 'id' => 4,
@@ -76,11 +67,7 @@ class ProductSeeder extends Seeder
                 'new_price' => null,
                 'is_featured' => 'featured',
                 'tags' => 'Macrame, Wall Art, Handcraft, Cotton, Decor',
-                'image' => json_encode([
-                    'product/01KK1ENVSRAT4B39DRMXJRFQG7.webp',
-                ]),
-                'created_at' => now(),
-                'updated_at' => now(),
+                'public_images' => ['img/banner-img3.webp'],
             ],
             [
                 'id' => 5,
@@ -93,12 +80,23 @@ class ProductSeeder extends Seeder
                 'new_price' => null,
                 'is_featured' => 'featured',
                 'tags' => 'Macrame, Wall Art, Handcraft, Cotton, Decor',
-                'image' => json_encode([
-                    'product/01KK1EP2744AGFFPXVE0MNZ1AY.webp',
-                ]),
+                'public_images' => ['img/Wooden-Beads_10mm_CloudDen_1_LS_LR_6162dc6c-4f25-462b-8078-1f41c3586979_1200x1200.jpg'],
+            ],
+        ];
+
+        foreach ($products as $product) {
+            $imagePaths = $this->copyPublicImages($product['public_images'], 'product');
+            unset($product['public_images']);
+
+            $slugBase = Str::slug((string) ($product['title'] ?? '')) ?: 'product-'.$product['id'];
+
+            DB::table('products')->insert([
+                ...$product,
+                'slug' => $slugBase,
+                'image' => json_encode($imagePaths),
                 'created_at' => now(),
                 'updated_at' => now(),
-            ],
-        ]);
+            ]);
+        }
     }
 }

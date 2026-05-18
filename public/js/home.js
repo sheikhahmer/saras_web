@@ -206,6 +206,7 @@ function showPanel(tab) {
     });
 }
 
+/*
 function toggleWish(btn) {
     btn.classList.toggle('wishlisted');
     const icon = btn.querySelector('i');
@@ -218,6 +219,7 @@ function toggleWish(btn) {
         icon.style.color = '';
     }
 }
+*/
 
 function handleSubscribe(btn) {
     const msg = document.getElementById('subMsg');

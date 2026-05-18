@@ -27,7 +27,7 @@
                         </h1>
 
                         <div class="slide-btn-wrap">
-                            <a href="#" class="shop-btn relative inline-block border-[1.5px] border-charcoal px-[42px] py-[14px] text-[0.65rem] font-bold tracking-wide-2 uppercase text-charcoal bg-white/25 backdrop-blur-md overflow-hidden transition-colors duration-[350ms] no-underline">
+                            <a href="{{ route('category') }}" class="shop-btn relative inline-block border-[1.5px] border-charcoal px-[42px] py-[14px] text-[0.65rem] font-bold tracking-wide-2 uppercase text-charcoal bg-white/25 backdrop-blur-md overflow-hidden transition-colors duration-[350ms] no-underline">
                                 <span class="relative z-[1]">Explore Collection</span>
                             </a>
                         </div>
@@ -201,53 +201,57 @@
                 $badgeColor = $product->is_featured === 'new_arrival' ? 'bg-red-500' : 'bg-green-500';
             @endphp
             <div class="product-card-wrap group" style="transition-delay: {{ $loop->index * 60 }}ms">
-                <div class="relative overflow-hidden bg-cream mb-3 sm:mb-4" style="padding-bottom:125%">
+                <a href="{{ route('product.show', ['product' => $product->slug]) }}" class="block no-underline text-inherit">
+                    <div class="relative overflow-hidden bg-cream mb-3 sm:mb-4" style="padding-bottom:125%">
 
-                    @if($primaryImage)
-                        <img class="product-img-primary absolute inset-0 w-full h-full object-cover transition-opacity duration-500"
-                             src="{{ Storage::url($primaryImage) }}"
-                             alt="{{ $product->title }}" />
-                    @endif
+                        @if($primaryImage)
+                            <img class="product-img-primary absolute inset-0 w-full h-full object-cover transition-opacity duration-500"
+                                 src="{{ Storage::url($primaryImage) }}"
+                                 alt="{{ $product->title }}" />
+                        @endif
 
-                    @if($secondaryImage)
-                        <img class="product-img-secondary absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-500"
-                             src="{{ Storage::url($secondaryImage) }}"
-                             alt="{{ $product->title }} alt" />
-                    @endif
+                        @if($secondaryImage)
+                            <img class="product-img-secondary absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-500"
+                                 src="{{ Storage::url($secondaryImage) }}"
+                                 alt="{{ $product->title }} alt" />
+                        @endif
 
-                    <div class="product-overlay absolute inset-0 flex items-end justify-center pb-5 opacity-0 transition-opacity duration-300"
-                         style="background:rgba(30,30,30,0.08)">
-                        <button class="add-cart-btn bg-white text-charcoal text-[0.6rem] font-bold tracking-wide-4 uppercase px-5 py-[10px] hover:bg-charcoal hover:text-white transition-colors duration-250 cursor-pointer">
-                            Add to Cart
+                        <div class="product-overlay absolute inset-0 flex items-end justify-center pb-5 opacity-0 transition-opacity duration-300"
+                             style="background:rgba(30,30,30,0.08)">
+                            <button type="button" class="add-cart-btn bg-white text-charcoal text-[0.6rem] font-bold tracking-wide-4 uppercase px-5 py-[10px] hover:bg-charcoal hover:text-white transition-colors duration-250 cursor-pointer" onclick="event.preventDefault();">
+                                Add to Cart
+                            </button>
+                        </div>
+
+                        @if($badge)
+                            <span class="absolute top-3 left-0 {{ $badgeColor }} text-white text-[0.55rem] font-bold tracking-wide-3 px-3 py-[5px] uppercase">
+                            {{ $badge }}
+                        </span>
+                        @endif
+
+                        {{-- Wishlist (disabled)
+                        <button type="button" class="wish-btn absolute top-3 right-3 bg-transparent border-0 cursor-pointer z-[2]" onclick="event.preventDefault(); toggleWish(this)">
+                            <i class="fa-regular fa-heart text-gray-400 text-lg"></i>
                         </button>
+                        --}}
                     </div>
 
-                    @if($badge)
-                        <span class="absolute top-3 left-0 {{ $badgeColor }} text-white text-[0.55rem] font-bold tracking-wide-3 px-3 py-[5px] uppercase">
-                        {{ $badge }}
-                    </span>
-                    @endif
-
-                    <button class="wish-btn absolute top-3 right-3 bg-transparent border-0 cursor-pointer" onclick="toggleWish(this)">
-                        <i class="fa-regular fa-heart text-gray-400 text-lg"></i>
-                    </button>
-                </div>
-
-                <div class="text-center">
-                    <h4 class="font-raleway text-[0.65rem] tracking-wide-4 uppercase text-gray-400 mb-1">{{ $product->title }}</h4>
-                    <p class="font-cormorant font-semibold text-charcoal text-[1.1rem]">
-                        ${{ number_format($product->price, 2) }}
-                        @if(isset($product->old_price))
-                            <span class="line-through text-gray-300 text-[0.85rem]">${{ number_format($product->old_price, 2) }}</span>
-                        @endif
-                    </p>
-                </div>
+                    <div class="text-center">
+                        <h4 class="font-raleway text-[0.65rem] tracking-wide-4 uppercase text-gray-400 mb-1">{{ $product->title }}</h4>
+                        <p class="font-cormorant font-semibold text-charcoal text-[1.1rem]">
+                            ${{ number_format($product->price, 2) }}
+                            @if(isset($product->old_price))
+                                <span class="line-through text-gray-300 text-[0.85rem]">${{ number_format($product->old_price, 2) }}</span>
+                            @endif
+                        </p>
+                    </div>
+                </a>
             </div>
         @endforeach
     </div>
 
     <div id="panel-best" class="tab-panel products-grid">
-        @foreach($bestSellers as $product)
+        @foreach($bestSellers as $index => $product)
             @php
                 // Decode images JSON if it's a string
                 $images = is_array($product->image) ? $product->image : json_decode($product->image, true);
@@ -262,50 +266,54 @@
             @endphp
 
             <div class="product-card-wrap group" style="transition-delay: {{ $index * 60 }}ms">
-                <div class="relative overflow-hidden bg-cream mb-3 sm:mb-4" style="padding-bottom:125%">
-                    @if($primaryImage)
-                        <img class="product-img-primary absolute inset-0 w-full h-full object-cover transition-opacity duration-500"
-                             src="{{ Storage::url($primaryImage) }}" alt="{{ $product->title }}" />
-                    @endif
+                <a href="{{ route('product.show', ['product' => $product->slug]) }}" class="block no-underline text-inherit">
+                    <div class="relative overflow-hidden bg-cream mb-3 sm:mb-4" style="padding-bottom:125%">
+                        @if($primaryImage)
+                            <img class="product-img-primary absolute inset-0 w-full h-full object-cover transition-opacity duration-500"
+                                 src="{{ Storage::url($primaryImage) }}" alt="{{ $product->title }}" />
+                        @endif
 
-                    @if($secondaryImage)
-                        <img class="product-img-secondary absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-500"
-                             src="{{ Storage::url($secondaryImage) }}" alt="{{ $product->title }} alt" />
-                    @endif
+                        @if($secondaryImage)
+                            <img class="product-img-secondary absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-500"
+                                 src="{{ Storage::url($secondaryImage) }}" alt="{{ $product->title }} alt" />
+                        @endif
 
-                    <div class="product-overlay absolute inset-0 flex items-end justify-center pb-5 opacity-0 transition-opacity duration-300"
-                         style="background:rgba(30,30,30,0.08)">
-                        <button class="add-cart-btn bg-white text-charcoal text-[0.6rem] font-bold tracking-wide-4 uppercase px-5 py-[10px] hover:bg-charcoal hover:text-white transition-colors duration-250 cursor-pointer">
-                            Add to Cart
+                        <div class="product-overlay absolute inset-0 flex items-end justify-center pb-5 opacity-0 transition-opacity duration-300"
+                             style="background:rgba(30,30,30,0.08)">
+                            <button type="button" class="add-cart-btn bg-white text-charcoal text-[0.6rem] font-bold tracking-wide-4 uppercase px-5 py-[10px] hover:bg-charcoal hover:text-white transition-colors duration-250 cursor-pointer" onclick="event.preventDefault();">
+                                Add to Cart
+                            </button>
+                        </div>
+
+                        @if($badge)
+                            <span class="absolute top-3 left-0 {{ $badgeColor }} text-white text-[0.55rem] font-bold tracking-wide-3 px-3 py-[5px] uppercase">
+                        {{ $badge }}
+                    </span>
+                        @endif
+
+                        {{-- Wishlist (disabled)
+                        <button type="button" class="wish-btn absolute top-3 right-3 bg-transparent border-0 cursor-pointer z-[2]" onclick="event.preventDefault(); toggleWish(this)">
+                            <i class="fa-regular fa-heart text-gray-400 text-lg"></i>
                         </button>
+                        --}}
                     </div>
 
-                    @if($badge)
-                        <span class="absolute top-3 left-0 {{ $badgeColor }} text-white text-[0.55rem] font-bold tracking-wide-3 px-3 py-[5px] uppercase">
-                    {{ $badge }}
-                </span>
-                    @endif
-
-                    <button class="wish-btn absolute top-3 right-3 bg-transparent border-0 cursor-pointer" onclick="toggleWish(this)">
-                        <i class="fa-regular fa-heart text-gray-400 text-lg"></i>
-                    </button>
-                </div>
-
-                <div class="text-center">
-                    <h4 class="font-raleway text-[0.65rem] tracking-wide-4 uppercase text-gray-400 mb-1">{{ $product->title }}</h4>
-                    <p class="font-cormorant font-semibold text-charcoal text-[1.1rem]">
-                        ${{ number_format($product->price, 2) }}
-                        @if(isset($product->old_price) && $product->old_price)
-                            <span class="line-through text-gray-300 text-[0.85rem]">${{ number_format($product->old_price, 2) }}</span>
-                        @endif
-                    </p>
-                </div>
+                    <div class="text-center">
+                        <h4 class="font-raleway text-[0.65rem] tracking-wide-4 uppercase text-gray-400 mb-1">{{ $product->title }}</h4>
+                        <p class="font-cormorant font-semibold text-charcoal text-[1.1rem]">
+                            ${{ number_format($product->price, 2) }}
+                            @if(isset($product->old_price) && $product->old_price)
+                                <span class="line-through text-gray-300 text-[0.85rem]">${{ number_format($product->old_price, 2) }}</span>
+                            @endif
+                        </p>
+                    </div>
+                </a>
             </div>
         @endforeach
     </div>
 
     <div id="panel-sale" class="tab-panel products-grid">
-        @foreach($featured as $product)
+        @foreach($featured as $index => $product)
             @php
                 $images = is_array($product->image) ? $product->image : json_decode($product->image, true);
                 $primaryImage = $images[0] ?? null;
@@ -315,44 +323,48 @@
             @endphp
 
             <div class="product-card-wrap group" style="transition-delay: {{ $index * 60 }}ms">
-                <div class="relative overflow-hidden bg-cream mb-3 sm:mb-4" style="padding-bottom:125%">
-                    @if($primaryImage)
-                        <img class="product-img-primary absolute inset-0 w-full h-full object-cover transition-opacity duration-500"
-                             src="{{ Storage::url($primaryImage) }}" alt="{{ $product->title }}" />
-                    @endif
+                <a href="{{ route('product.show', ['product' => $product->slug]) }}" class="block no-underline text-inherit">
+                    <div class="relative overflow-hidden bg-cream mb-3 sm:mb-4" style="padding-bottom:125%">
+                        @if($primaryImage)
+                            <img class="product-img-primary absolute inset-0 w-full h-full object-cover transition-opacity duration-500"
+                                 src="{{ Storage::url($primaryImage) }}" alt="{{ $product->title }}" />
+                        @endif
 
-                    @if($secondaryImage)
-                        <img class="product-img-secondary absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-500"
-                             src="{{ Storage::url($secondaryImage) }}" alt="{{ $product->title }} alt" />
-                    @endif
+                        @if($secondaryImage)
+                            <img class="product-img-secondary absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-500"
+                                 src="{{ Storage::url($secondaryImage) }}" alt="{{ $product->title }} alt" />
+                        @endif
 
-                    <div class="product-overlay absolute inset-0 flex items-end justify-center pb-5 opacity-0 transition-opacity duration-300"
-                         style="background:rgba(30,30,30,0.08)">
-                        <button class="add-cart-btn bg-white text-charcoal text-[0.6rem] font-bold tracking-wide-4 uppercase px-5 py-[10px] hover:bg-charcoal hover:text-white transition-colors duration-250 cursor-pointer">
-                            Add to Cart
+                        <div class="product-overlay absolute inset-0 flex items-end justify-center pb-5 opacity-0 transition-opacity duration-300"
+                             style="background:rgba(30,30,30,0.08)">
+                            <button type="button" class="add-cart-btn bg-white text-charcoal text-[0.6rem] font-bold tracking-wide-4 uppercase px-5 py-[10px] hover:bg-charcoal hover:text-white transition-colors duration-250 cursor-pointer" onclick="event.preventDefault();">
+                                Add to Cart
+                            </button>
+                        </div>
+
+                        @if($badge)
+                            <span class="absolute top-3 left-0 {{ $badgeColor }} text-white text-[0.55rem] font-bold tracking-wide-3 px-3 py-[5px] uppercase">
+                        {{ $badge }}
+                    </span>
+                        @endif
+
+                        {{-- Wishlist (disabled)
+                        <button type="button" class="wish-btn absolute top-3 right-3 bg-transparent border-0 cursor-pointer z-[2]" onclick="event.preventDefault(); toggleWish(this)">
+                            <i class="fa-regular fa-heart text-gray-400 text-lg"></i>
                         </button>
+                        --}}
                     </div>
 
-                    @if($badge)
-                        <span class="absolute top-3 left-0 {{ $badgeColor }} text-white text-[0.55rem] font-bold tracking-wide-3 px-3 py-[5px] uppercase">
-                    {{ $badge }}
-                </span>
-                    @endif
-
-                    <button class="wish-btn absolute top-3 right-3 bg-transparent border-0 cursor-pointer" onclick="toggleWish(this)">
-                        <i class="fa-regular fa-heart text-gray-400 text-lg"></i>
-                    </button>
-                </div>
-
-                <div class="text-center">
-                    <h4 class="font-raleway text-[0.65rem] tracking-wide-4 uppercase text-gray-400 mb-1">{{ $product->title }}</h4>
-                    <p class="font-cormorant font-semibold text-charcoal text-[1.1rem]">
-                        ${{ number_format($product->price, 2) }}
-                        @if(isset($product->old_price) && $product->old_price)
-                            <span class="line-through text-gray-300 text-[0.85rem]">${{ number_format($product->old_price, 2) }}</span>
-                        @endif
-                    </p>
-                </div>
+                    <div class="text-center">
+                        <h4 class="font-raleway text-[0.65rem] tracking-wide-4 uppercase text-gray-400 mb-1">{{ $product->title }}</h4>
+                        <p class="font-cormorant font-semibold text-charcoal text-[1.1rem]">
+                            ${{ number_format($product->price, 2) }}
+                            @if(isset($product->old_price) && $product->old_price)
+                                <span class="line-through text-gray-300 text-[0.85rem]">${{ number_format($product->old_price, 2) }}</span>
+                            @endif
+                        </p>
+                    </div>
+                </a>
             </div>
         @endforeach
     </div>
@@ -364,10 +376,7 @@
     </div>
 </section>
 
-<section class="bg-[#111110] py-6 min-h-[150px] text-center flex flex-col justify-center rounded-sm">
-    <div class="text-white/50 uppercase tracking-[10%] md:tracking-[25%] text-lg font-semibold mb-2">FOLLOW US ON INSTAGRAM</div>
-    <div><a href="#" class="text-white text-lg font-semibold tracking-[20%] hover:text-rouge transition-colors duration-300">@saras_creation8</a></div>
-</section>
+@include('partials.instagram-cta-strip')
 
 @endsection
 

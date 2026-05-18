@@ -37,11 +37,15 @@
                         Home
                         <span class="absolute left-0 bottom-[-2px] w-0 h-[2px] bg-[#d94f4f] transition-all duration-300 group-hover:w-full"></span>
                     </a>
-                    <a href="{{ url('/category') }}" style="font-family: Raleway, sans-serif;" class="text-[rgba(250,246,241,0.45)] text-[0.8rem] md:text-sm hover:text-[#FAF6F1] transition-all duration-300 no-underline relative group">
+                    <a href="{{ route('category') }}" style="font-family: Raleway, sans-serif;" class="text-[rgba(250,246,241,0.45)] text-[0.8rem] md:text-sm hover:text-[#FAF6F1] transition-all duration-300 no-underline relative group">
                         Shop Collection
                         <span class="absolute left-0 bottom-[-2px] w-0 h-[2px] bg-[#d94f4f] transition-all duration-300 group-hover:w-full"></span>
                     </a>
-                    <a href="#" style="font-family: Raleway, sans-serif;" class="text-[rgba(250,246,241,0.45)] text-[0.8rem] md:text-sm hover:text-[#FAF6F1] transition-all duration-300 no-underline relative group">
+                    <a href="{{ route('gallery') }}" style="font-family: Raleway, sans-serif;" class="text-[rgba(250,246,241,0.45)] text-[0.8rem] md:text-sm hover:text-[#FAF6F1] transition-all duration-300 no-underline relative group">
+                        Gallery
+                        <span class="absolute left-0 bottom-[-2px] w-0 h-[2px] bg-[#d94f4f] transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="{{ route('aboutUs') }}" style="font-family: Raleway, sans-serif;" class="text-[rgba(250,246,241,0.45)] text-[0.8rem] md:text-sm hover:text-[#FAF6F1] transition-all duration-300 no-underline relative group">
                         Our Story
                         <span class="absolute left-0 bottom-[-2px] w-0 h-[2px] bg-[#d94f4f] transition-all duration-300 group-hover:w-full"></span>
                     </a>
@@ -49,7 +53,7 @@
 {{--                        Blog--}}
 {{--                        <span class="absolute left-0 bottom-[-2px] w-0 h-[2px] bg-[#d94f4f] transition-all duration-300 group-hover:w-full"></span>--}}
 {{--                    </a>--}}
-                    <a href="#" style="font-family: Raleway, sans-serif;" class="text-[rgba(250,246,241,0.45)] text-[0.8rem] md:text-sm hover:text-[#FAF6F1] transition-all duration-300 no-underline relative group">
+                    <a href="{{ route('contactUs') }}" style="font-family: Raleway, sans-serif;" class="text-[rgba(250,246,241,0.45)] text-[0.8rem] md:text-sm hover:text-[#FAF6F1] transition-all duration-300 no-underline relative group">
                         Contact Us
                         <span class="absolute left-0 bottom-[-2px] w-0 h-[2px] bg-[#d94f4f] transition-all duration-300 group-hover:w-full"></span>
                     </a>
@@ -104,33 +108,34 @@
             <div class="transition-all duration-300 delay-400">
                 <p style="font-family: Raleway, sans-serif;" class="text-[0.55rem] font-bold tracking-[0.35em] uppercase text-[#d94f4f] mb-5">Contact</p>
                 <div class="flex flex-col gap-3.5">
-                    <div class="flex items-start gap-3">
-                        <i class="fas fa-map-marker-alt text-[#d94f4f] text-[0.75rem] md:text-xs mt-1 shrink-0"></i>
-                        <span style="font-family: Raleway, sans-serif;" class="text-[rgba(250,246,241,0.45)] text-[0.75rem] md:text-xs leading-relaxed">123 Artisan Lane, Craft District, City 10001</span>
-                    </div>
-                    <div class="flex items-center gap-3">
-                        <i class="fas fa-envelope text-[#d94f4f] text-[0.75rem] md:text-xs shrink-0"></i>
-                        <a href="mailto:hello@sarascreations.com"
-                           style="font-family: Raleway, sans-serif;"
-                           class="text-[rgba(250,246,241,0.45)] text-[0.75rem] md:text-xs no-underline transition-colors duration-300 hover:text-[rgba(250,246,241,0.85)] relative group">
-                            hello@sarascreations.com
-                            <span class="absolute left-0 bottom-[-2px] w-0 h-[2px] bg-[#d94f4f] transition-all duration-300 group-hover:w-full"></span>
-                        </a>
-                    </div>
-                    <div class="flex items-center gap-3">
-                        <i class="fas fa-phone text-[#d94f4f] text-[0.75rem] md:text-xs shrink-0"></i>
-                        <span style="font-family: Raleway, sans-serif;" class="text-[rgba(250,246,241,0.45)] text-[0.75rem] md:text-xs">+92 3166448508</span>
-                    </div>
+                    @if(filled($siteSettings->address))
+                        <div class="flex items-start gap-3">
+                            <i class="fas fa-map-marker-alt text-[#d94f4f] text-[0.75rem] md:text-xs mt-1 shrink-0"></i>
+                            <span style="font-family: Raleway, sans-serif;" class="text-[rgba(250,246,241,0.45)] text-[0.75rem] md:text-xs leading-relaxed">{!! nl2br(e($siteSettings->address)) !!}</span>
+                        </div>
+                    @endif
+                    @if(filled($siteSettings->email))
+                        <div class="flex items-center gap-3">
+                            <i class="fas fa-envelope text-[#d94f4f] text-[0.75rem] md:text-xs shrink-0"></i>
+                            <a href="mailto:{{ $siteSettings->email }}"
+                               style="font-family: Raleway, sans-serif;"
+                               class="text-[rgba(250,246,241,0.45)] text-[0.75rem] md:text-xs no-underline transition-colors duration-300 hover:text-[rgba(250,246,241,0.85)] relative group">
+                                {{ $siteSettings->email }}
+                                <span class="absolute left-0 bottom-[-2px] w-0 h-[2px] bg-[#d94f4f] transition-all duration-300 group-hover:w-full"></span>
+                            </a>
+                        </div>
+                    @endif
+                    @if(filled($siteSettings->phone))
+                        <div class="flex items-center gap-3">
+                            <i class="fas fa-phone text-[#d94f4f] text-[0.75rem] md:text-xs shrink-0"></i>
+                            <a href="tel:{{ preg_replace('/\s+/', '', $siteSettings->phone) }}"
+                               style="font-family: Raleway, sans-serif;"
+                               class="text-[rgba(250,246,241,0.45)] text-[0.75rem] md:text-xs no-underline transition-colors duration-300 hover:text-[rgba(250,246,241,0.85)]">{{ $siteSettings->phone }}</a>
+                        </div>
+                    @endif
                 </div>
 
-                <!-- Social Icons -->
-                <div class="flex gap-2.5 mt-7">
-                    <a href="#" class="w-8 h-8 flex items-center justify-center text-[rgba(250,246,241,0.45)] hover:text-[#FAF6F1] border border-[rgba(250,246,241,0.2)] hover:border-[#d94f4f] transition-all duration-300 no-underline rounded-sm" title="Instagram"><i class="fab fa-instagram text-[0.75rem] md:text-sm"></i></a>
-                    <a href="#" class="w-8 h-8 flex items-center justify-center text-[rgba(250,246,241,0.45)] hover:text-[#FAF6F1] border border-[rgba(250,246,241,0.2)] hover:border-[#d94f4f] transition-all duration-300 no-underline rounded-sm" title="Facebook"><i class="fab fa-facebook-f text-[0.75rem] md:text-sm"></i></a>
-                    <a href="#" class="w-8 h-8 flex items-center justify-center text-[rgba(250,246,241,0.45)] hover:text-[#FAF6F1] border border-[rgba(250,246,241,0.2)] hover:border-[#d94f4f] transition-all duration-300 no-underline rounded-sm" title="Pinterest"><i class="fab fa-pinterest-p text-[0.75rem] md:text-sm"></i></a>
-                    <a href="#" class="w-8 h-8 flex items-center justify-center text-[rgba(250,246,241,0.45)] hover:text-[#FAF6F1] border border-[rgba(250,246,241,0.2)] hover:border-[#d94f4f] transition-all duration-300 no-underline rounded-sm" title="YouTube"><i class="fab fa-youtube text-[0.75rem] md:text-sm"></i></a>
-                    <a href="#" class="w-8 h-8 flex items-center justify-center text-[rgba(250,246,241,0.45)] hover:text-[#FAF6F1] border border-[rgba(250,246,241,0.2)] hover:border-[#d94f4f] transition-all duration-300 no-underline rounded-sm" title="Twitter"><i class="fab fa-twitter text-[0.75rem] md:text-sm"></i></a>
-                </div>
+                @include('partials.social-links', ['variant' => 'footer'])
             </div>
         </div>
 

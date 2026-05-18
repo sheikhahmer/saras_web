@@ -55,9 +55,11 @@
                             </span>
                         @endif
 
+{{-- Wishlist (disabled)
                         <button class="wish-btn absolute top-5 right-5 bg-white/80 backdrop-blur-sm border-0 w-10 h-10 flex items-center justify-center cursor-pointer z-10 hover:bg-white transition-colors duration-200" onclick="toggleWish(this)" aria-label="Add to wishlist">
                             <i class="fa-regular fa-heart text-gray-400 text-base"></i>
                         </button>
+--}}
 
                         <div class="absolute bottom-5 right-5 z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
                             <span class="text-[0.5rem] font-bold tracking-wide-3 uppercase bg-white/80 text-charcoal px-3 py-1 backdrop-blur-sm">Hover to zoom</span>
@@ -136,57 +138,68 @@
 {{--                    </div>--}}
 
                     @php
-                        // Your WhatsApp Business number (Pakistan format)
-                        $phoneNumber = '923166448508'; // Remove 0, add 92 country code
+                        $phoneNumber = $siteSettings->whatsappDigitsOrConfigFallback();
 
-                        // Create professional formatted message
-                        $message = "";
-                        $message .= "🔷 *NEW PRODUCT INQUIRY* 🔷%0A";
-                        $message .= "═════════════════════════%0A%0A";
+                        $sku = 'SC-' . str_pad((string) $product->id, 5, '0', STR_PAD_LEFT);
+                        $titlePlain = strip_tags((string) $product->title);
+                        // Avoid accidental WhatsApp bold/formatting from stray asterisks in titles
+                        $titlePlain = str_replace('*', '', $titlePlain);
 
-                        $message .= "📋 *Product Details*%0A";
-                        $message .= "▸ *Name:* " . $product->title . "%0A";
+                        $productUrl = route('product.show', ['product' => $product->slug]);
 
-                        if($product->has_offer && $product->old_price && $product->new_price) {
-                            $message .= "▸ *Offer Price:* Rs " . number_format($product->new_price, 2) . "%0A";
-                            $message .= "▸ *Regular Price:* Rs " . number_format($product->old_price, 2) . "%0A";
-                            $message .= "▸ *You Save:* Rs " . number_format($product->old_price - $product->new_price, 2) . " (" . round((1 - $product->new_price/$product->old_price)*100) . "%)%0A";
+                        $lines = [
+                            '*SARAS CREATIONS — Product inquiry*',
+                            '',
+                            'Hello, I would like to know more about this product.',
+                            '',
+                            '*Item*',
+                            '• Name: ' . $titlePlain,
+                            '• SKU: ' . $sku,
+                        ];
+
+                        if ($product->category) {
+                            $lines[] = '• Category: ' . strip_tags((string) $product->category->name);
+                        }
+
+                        if ($product->has_offer && $product->old_price && $product->new_price) {
+                            $pct = (int) round((1 - (float) $product->new_price / (float) $product->old_price) * 100);
+                            $lines[] = '• Offer price: Rs ' . number_format((float) $product->new_price, 2);
+                            $lines[] = '• Regular price: Rs ' . number_format((float) $product->old_price, 2);
+                            $lines[] = '• You save: Rs ' . number_format((float) $product->old_price - (float) $product->new_price, 2) . " ({$pct}%)";
                         } else {
-                            $message .= "▸ *Price:* Rs " . number_format($product->price ?? 0, 2) . "%0A";
+                            $lines[] = '• Price: Rs ' . number_format((float) ($product->price ?? 0), 2);
                         }
 
-                        if($product->category) {
-                            $message .= "▸ *Category:* " . $product->category->name . "%0A";
-                        }
+                        $lines[] = '';
+                        $lines[] = '*Product link*';
+                        $lines[] = $productUrl;
+                        $lines[] = '';
+                        $lines[] = '*Please confirm*';
+                        $lines[] = '• Stock availability';
+                        $lines[] = '• Payment options (bank transfer, JazzCash, EasyPaisa)';
+                        $lines[] = '• Delivery charges and estimated delivery time';
+                        $lines[] = '';
+                        $lines[] = 'Thank you.';
 
-                        $message .= "▸ *SKU:* SC-" . str_pad($product->id, 5, '0', STR_PAD_LEFT) . "%0A%0A";
+                        $whatsappMessage = implode("\n", $lines);
+                        $whatsappLink = $phoneNumber !== ''
+                            ? 'https://api.whatsapp.com/send?phone=' . rawurlencode($phoneNumber) . '&text=' . rawurlencode($whatsappMessage)
+                            : '#';
 
-                        $message .= "🔗 *Product Link*%0A";
-                        $message .= "▸ " . url('/product/' . $product->id) . "%0A%0A";
-
-                        $message .= "👤 *Customer Information*%0A";
-                        $message .= "▸ *Name:* [Customer to fill]%0A";
-                        $message .= "▸ *Phone:* [Customer to fill]%0A";
-                        $message .= "▸ *Quantity:* [Customer to fill]%0A%0A";
-
-                        $message .= "✅ *Next Steps*%0A";
-                        $message .= "Please confirm:%0A";
-                        $message .= "• Current stock availability%0A";
-                        $message .= "• Payment options (Bank Transfer / JazzCash / EasyPaisa)%0A";
-                        $message .= "• Delivery charges and timeline%0A%0A";
-
-                        $message .= "─────────────────────────%0A";
-                        $message .= "🙏 Thank you for choosing SARAS CREATIONS!";
-
-                        // Encode for URL
-                        $whatsappLink = "https://api.whatsapp.com/send?phone={$phoneNumber}&text=" . $message;
+                        $cardUrl = route('product.inquiry-card', ['product' => $product->slug]);
+                        $whatsappShareCaption = "Hello SARAS CREATIONS — product inquiry. Summary image attached. Page: {$productUrl}";
                     @endphp
 
-                    <a href="{{ $whatsappLink }}"
-                       target="_blank"
-                       class="block text-center border-[1.5px] border-charcoal px-6 py-[14px] text-[0.65rem] font-bold tracking-wide-4 uppercase text-charcoal no-underline transition-colors duration-[350ms] hover:bg-charcoal hover:text-white mb-8">
-                        <i class="fab fa-whatsapp mr-2"></i> Buy Now on WhatsApp
-                    </a>
+                    @if($phoneNumber !== '')
+                        <a href="{{ $whatsappLink }}"
+                           id="waBuyBtn"
+                           data-card-url="{{ $cardUrl }}"
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           class="block text-center border-[1.5px] border-charcoal px-6 py-[14px] text-[0.65rem] font-bold tracking-wide-4 uppercase text-charcoal no-underline transition-colors duration-[350ms] hover:bg-charcoal hover:text-white mb-8">
+                            <i class="fab fa-whatsapp mr-2"></i> Buy Now on WhatsApp
+                        </a>
+                    @endif
 
                     <div class="space-y-2 text-[0.6rem] font-bold tracking-wide-3 uppercase text-charcoal/50 pb-8 border-b border-charcoal/[0.08]">
                         <p><span class="text-charcoal mr-2">SKU:</span>SC-{{ str_pad($product->id, 5, '0', STR_PAD_LEFT) }}</p>
@@ -194,13 +207,23 @@
                         <p><span class="text-charcoal mr-2">Tags:</span>{{ $product->tags ?? 'Macrame, Handcraft, Decor' }}</p>
                     </div>
 
-                    <div class="flex items-center gap-5 pt-6">
-                        <span class="text-[0.55rem] font-bold tracking-wide-4 uppercase text-charcoal/50">Share:</span>
-                        <a href="#" class="text-charcoal/50 hover:text-rouge transition-colors duration-200 text-sm"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="text-charcoal/50 hover:text-rouge transition-colors duration-200 text-sm"><i class="fab fa-pinterest"></i></a>
-                        <a href="#" class="text-charcoal/50 hover:text-rouge transition-colors duration-200 text-sm"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" class="text-charcoal/50 hover:text-rouge transition-colors duration-200 text-sm"><i class="fab fa-twitter"></i></a>
-                    </div>
+                    @php
+                        $shareSocialCount = collect([
+                            $siteSettings->instagram_url,
+                            $siteSettings->facebook_url,
+                            $siteSettings->pinterest_url,
+                            $siteSettings->twitter_url,
+                            $siteSettings->youtube_url,
+                            $siteSettings->snapchat_url,
+                            $siteSettings->tiktok_url,
+                        ])->filter(fn ($u) => filled($u))->count();
+                    @endphp
+                    @if($shareSocialCount > 0)
+                        <div class="flex items-center gap-5 pt-6 flex-wrap">
+                            <span class="text-[0.55rem] font-bold tracking-wide-4 uppercase text-charcoal/50">Share:</span>
+                            @include('partials.social-links', ['variant' => 'inline'])
+                        </div>
+                    @endif
                 </div>
 
             </div>
@@ -382,7 +405,7 @@
                             };
                         @endphp
                         <div class="product-card-wrap group" style="transition-delay:{{ $index * 60 }}ms">
-                            <a href="{{ route('product.show', $rp->id) }}" class="block no-underline">
+                            <a href="{{ route('product.show', ['product' => $rp->slug]) }}" class="block no-underline">
                                 <div class="relative overflow-hidden bg-[#F5EDE6] mb-3 sm:mb-4" style="padding-bottom:125%">
                                     <img class="product-img-primary absolute inset-0 w-full h-full object-cover transition-opacity duration-500"
                                          src="{{ $rpPrimary }}" alt="{{ $rp->title }}"/>
@@ -397,9 +420,11 @@
                                     @if($rp->is_featured)
                                         <span class="absolute top-3 left-0 {{ $rpBadgeColor }} text-white text-[0.55rem] font-bold tracking-wide-3 px-3 py-[5px] uppercase">{{ $rpBadgeLabel }}</span>
                                     @endif
+                                    {{-- Wishlist (disabled)
                                     <button class="wish-btn absolute top-3 right-3 bg-transparent border-0 cursor-pointer" onclick="toggleWish(this)">
                                         <i class="fa-regular fa-heart text-gray-400 text-lg"></i>
                                     </button>
+                                    --}}
                                 </div>
                                 <div class="text-center">
                                     <h4 class="font-raleway text-[0.65rem] tracking-wide-4 uppercase text-gray-400 mb-1">{{ $rp->title }}</h4>
@@ -426,10 +451,7 @@
         </section>
     @endif
 
-    <section class="bg-[#111110] py-6 min-h-[150px] text-center flex flex-col justify-center rounded-sm">
-        <div class="text-white/50 uppercase tracking-[10%] md:tracking-[25%] text-lg font-semibold mb-2">FOLLOW US ON INSTAGRAM</div>
-        <div><a href="#" class="text-white text-lg font-semibold tracking-[20%] hover:text-rouge transition-colors duration-300">@saras_creation8</a></div>
-    </section>
+    @include('partials.instagram-cta-strip')
 
     <style>
         /* ── Detail Tab Triggers ── */
@@ -532,7 +554,7 @@
             input.value = val;
         }
 
-        /* ── Wishlist Toggle ── */
+        /* ── Wishlist Toggle (disabled)
         function toggleWish(btn) {
             const icon = btn.querySelector('i');
             if (icon.classList.contains('fa-regular')) {
@@ -545,6 +567,7 @@
                 icon.style.color = '';
             }
         }
+        */
 
         /* ── Detail Tabs ── */
         function switchDetailTab(id) {
@@ -601,3 +624,41 @@
     </script>
 
 @endsection
+
+@push('scripts')
+    <script>
+        (function () {
+            const a = document.getElementById('waBuyBtn');
+            if (!a) return;
+
+            const cardUrl = a.getAttribute('data-card-url');
+            const shareText = {!! json_encode($whatsappShareCaption, JSON_HEX_TAG | JSON_HEX_APOS | JSON_UNESCAPED_UNICODE) !!};
+
+            a.addEventListener('click', async function (e) {
+                if (!cardUrl || typeof navigator.share !== 'function') {
+                    return;
+                }
+
+                e.preventDefault();
+
+                try {
+                    const res = await fetch(cardUrl, { credentials: 'same-origin' });
+                    if (!res.ok) {
+                        throw new Error('card');
+                    }
+                    const blob = await res.blob();
+                    const file = new File([blob], 'saras-product-inquiry.png', { type: 'image/png' });
+
+                    if (navigator.canShare && navigator.canShare({ files: [file] })) {
+                        await navigator.share({ text: shareText, files: [file] });
+                        return;
+                    }
+                } catch (err) {
+                    /* user cancelled or share not available */
+                }
+
+                window.open(a.href, '_blank', 'noopener,noreferrer');
+            });
+        })();
+    </script>
+@endpush
