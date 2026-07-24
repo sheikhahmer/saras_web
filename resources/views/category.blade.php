@@ -116,7 +116,6 @@
         )->toArray();
     @endphp
 
-    <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/js/all.min.js" defer></script>
     <script src="{{ asset('js/category.js') }}"></script>
 @endpush

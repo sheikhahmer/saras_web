@@ -4,8 +4,65 @@
 @source '../../storage/framework/views/*.php';
 @source '../**/*.blade.php';
 @source '../**/*.js';
+@source '../../public/js/**/*.js';
 
 @theme {
-    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+    --font-sans: 'Raleway', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
         'Segoe UI Symbol', 'Noto Color Emoji';
+    --font-raleway: 'Raleway', sans-serif;
+    --font-cormorant: 'Cormorant Garamond', serif;
+
+    --color-cream: #FAF6F1;
+    --color-charcoal: #1e1e1e;
+    --color-rouge: #d94f4f;
+    --color-blush: #E8C9B8;
+    --color-sand: #C9B49A;
+    --color-warm-white: #FDFAF7;
+
+    --tracking-ultra: 0.35em;
+    --tracking-wide-1: 0.12em;
+    --tracking-wide-2: 0.25em;
+    --tracking-wide-3: 0.3em;
+    --tracking-wide-4: 0.22em;
+    --tracking-wide-5: 0.2em;
+    --tracking-wide-6: 0.15em;
+    --tracking-wide-7: 0.32em;
+
+    --text-2xs: 0.52rem;
+    --text-2xs--line-height: 1;
+    --text-3xs: 0.45rem;
+    --text-3xs--line-height: 1;
+    --text-nav: 0.63rem;
+    --text-nav--line-height: 1;
+    --text-tag: 0.54rem;
+    --text-tag--line-height: 1;
+    --text-xs2: 0.58rem;
+    --text-xs2--line-height: 1;
+    --text-xs3: 0.6rem;
+    --text-xs3--line-height: 1;
+    --text-xs4: 0.62rem;
+    --text-xs4--line-height: 1;
+    --text-xs5: 0.65rem;
+    --text-xs5--line-height: 1;
+    --text-xs6: 0.68rem;
+    --text-xs6--line-height: 1.5;
+    --text-xs7: 0.72rem;
+    --text-xs7--line-height: 1;
+
+    --shadow-dropdown: 0 20px 60px rgba(0, 0, 0, 0.10), 0 4px 12px rgba(0, 0, 0, 0.06);
+
+    --grid-template-columns-shop-2: repeat(2, 1fr);
+    --grid-template-columns-shop-3: repeat(3, 1fr);
+    --grid-template-columns-shop-4: repeat(4, 1fr);
+    --grid-template-columns-shop-5: repeat(5, 1fr);
+    --grid-template-columns-dropdown: repeat(3, 1fr);
+
+    --container-screen-shop: 1400px;
+
+    --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+    --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+
+    --blur-nav: 16px;
+
+    --spacing-nav: 72px;
 }

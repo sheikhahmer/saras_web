@@ -1,30 +1,3 @@
-tailwind.config = {
-    theme: {
-        extend: {
-            colors: {
-                cream:      '#FAF6F1',
-                charcoal:   '#1e1e1e',
-                rouge:      '#d94f4f',
-                blush:      '#E8C9B8',
-                sand:       '#C9B49A',
-                'warm-white': '#FDFAF7',
-            },
-            fontFamily: {
-                raleway:   ['Raleway', 'sans-serif'],
-                cormorant: ['"Cormorant Garamond"', 'serif'],
-            },
-            letterSpacing: {
-                'ultra': '0.35em',
-                'wide-2': '0.25em',
-                'wide-3': '0.3em',
-                'wide-4': '0.22em',
-                'wide-5': '0.2em',
-                'wide-6': '0.15em',
-            },
-        }
-    }
-};
-
 $(function () {
     const totalSlides = 2;
     let progressRAF;
